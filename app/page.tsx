@@ -1,7 +1,16 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Play, MapPin, Calendar, Clock, Users, ArrowRight } from "lucide-react";
+import {
+  Play,
+  MapPin,
+  Calendar,
+  Clock,
+  Users,
+  ArrowRight,
+  Phone,
+  Mail,
+} from "lucide-react";
 
 export default function Home() {
   return (
@@ -17,9 +26,12 @@ export default function Home() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="text-xl font-bold tracking-tight"
           >
-            HGC CHURCH
+            <img
+              src="/logo-main-text.webp"
+              alt="HGC Church"
+              className="h-12 w-auto md:h-14"
+            />
           </motion.div>
 
           <div className="hidden space-x-10 md:flex">
@@ -55,85 +67,54 @@ export default function Home() {
         id="beranda"
         className="relative flex min-h-screen items-center justify-center overflow-hidden pt-20"
       >
-        {/* Minimalistic Grid Background */}
-        <div className="absolute inset-0 bg-black" />
-        <div className="absolute inset-0" style={{
-          backgroundImage: "linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px)",
-          backgroundSize: "100px 100px"
-        }} />
-        
-        {/* Subtle gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/50 to-black" />
+        {/* Background Image - Worship & Praise */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage:
+              "url('https://images.unsplash.com/photo-1478147427282-58a87a120781?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
+          }}
+        />
+
+        {/* Dark overlay untuk readability */}
+        <div className="absolute inset-0 bg-black/70" />
+
+        {/* Gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/60 to-black" />
 
         <div className="relative z-10 mx-auto max-w-6xl px-6 text-center">
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.2 }}
-            className="mb-12"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="mb-8"
           >
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="mb-4 text-sm font-medium uppercase tracking-[0.3em] text-gray-400"
-            >
-              Selamat Datang di HGC Church
-            </motion.p>
-            
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-              className="mb-8 text-5xl font-bold leading-[1.1] tracking-tight md:text-7xl lg:text-8xl"
-            >
-              Bertumbuh Bersama
-              <br />
-              <span className="text-white/40">Dalam Kasih Kristus</span>
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.7 }}
-              className="mx-auto mb-12 max-w-2xl text-lg leading-relaxed text-gray-400 md:text-xl"
-            >
-              Komunitas yang mengasihi Tuhan dan melayani sesama dengan sukacita
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.9 }}
-              className="flex flex-col items-center justify-center gap-4 sm:flex-row"
-            >
-              <button className="group flex items-center gap-3 border border-white bg-white px-8 py-4 text-base font-semibold tracking-wide text-black transition-all hover:bg-black hover:text-white">
-                <Play className="h-5 w-5" fill="currentColor" />
-                TONTON IBADAH
-              </button>
-              <button className="flex items-center gap-3 border border-white/20 bg-transparent px-8 py-4 text-base font-semibold tracking-wide text-white transition-all hover:border-white hover:bg-white hover:text-black">
-                <MapPin className="h-5 w-5" />
-                KUNJUNGI KAMI
-              </button>
-            </motion.div>
+            <img
+              src="/logo-main.webp"
+              alt="HGC Church Logo"
+              className="mx-auto h-32 w-auto md:h-40 lg:h-48"
+            />
           </motion.div>
 
-          {/* Scroll Indicator */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.4, duration: 0.8 }}
-            className="absolute bottom-12 left-1/2 -translate-x-1/2"
+          <motion.h1
+            className="text-8xl font-bold leading-[1.2] md:text-9xl lg:text-[12rem]"
+            style={{ fontFamily: "'Dancing Script', cursive" }}
           >
-            <motion.div
-              animate={{ y: [0, 12, 0] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              className="flex flex-col items-center gap-2"
-            >
-              <span className="text-xs uppercase tracking-widest text-gray-600">Scroll</span>
-              <div className="h-10 w-px bg-gradient-to-b from-gray-600 to-transparent" />
-            </motion.div>
-          </motion.div>
+            {"Welcome Home".split("").map((char, index) => (
+              <motion.span
+                key={index}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{
+                  duration: 0.1,
+                  delay: 0.5 + index * 0.08,
+                  ease: "easeOut",
+                }}
+              >
+                {char}
+              </motion.span>
+            ))}
+          </motion.h1>
         </div>
       </section>
 
@@ -166,14 +147,16 @@ export default function Home() {
               <div className="aspect-video w-full">
                 <iframe
                   className="h-full w-full"
-                  src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                  src="https://www.youtube.com/embed/tRAXfgylpqM"
                   title="YouTube video player"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                 />
               </div>
               <div className="border-t border-white/10 p-8">
-                <h3 className="mb-3 text-2xl font-bold">Judul Khotbah - Tema Minggu Ini</h3>
+                <h3 className="mb-3 text-2xl font-bold">
+                  Judul Khotbah - Tema Minggu Ini
+                </h3>
                 <div className="flex flex-wrap items-center gap-4 text-sm text-gray-400">
                   <span className="flex items-center gap-2">
                     <Calendar className="h-4 w-4" />
@@ -191,7 +174,10 @@ export default function Home() {
       </section>
 
       {/* Upcoming Events Section */}
-      <section id="event" className="relative border-y border-white/5 bg-white py-24 text-black md:py-32">
+      <section
+        id="event"
+        className="relative border-y border-white/5 bg-white py-24 text-black md:py-32"
+      >
         <div className="mx-auto max-w-7xl px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -214,24 +200,27 @@ export default function Home() {
                 date: "25 Desember 2025",
                 time: "09:00 & 18:00 WIB",
                 location: "Gedung Gereja Utama",
-                description: "Perayaan Natal bersama dengan pujian, firman Tuhan, dan persekutuan.",
-                tag: "Special Event"
+                description:
+                  "Perayaan Natal bersama dengan pujian, firman Tuhan, dan persekutuan.",
+                tag: "Special Event",
               },
               {
                 title: "Retreat Pemuda 2026",
                 date: "10-12 Januari 2026",
                 time: "Full Day",
                 location: "Puncak, Bogor",
-                description: "3 hari 2 malam retreat khusus untuk pemuda dengan tema 'Rise Up'.",
-                tag: "Youth Event"
+                description:
+                  "3 hari 2 malam retreat khusus untuk pemuda dengan tema 'Rise Up'.",
+                tag: "Youth Event",
               },
               {
                 title: "Konser Rohani",
                 date: "15 Februari 2026",
                 time: "19:00 WIB",
                 location: "Auditorium Gereja",
-                description: "Malam pujian dan penyembahan bersama worship team & special guest.",
-                tag: "Worship Night"
+                description:
+                  "Malam pujian dan penyembahan bersama worship team & special guest.",
+                tag: "Worship Night",
               },
             ].map((event, index) => (
               <motion.div
@@ -246,7 +235,9 @@ export default function Home() {
                   <div className="mb-4 inline-block border border-black px-3 py-1 text-xs font-semibold uppercase tracking-wider">
                     {event.tag}
                   </div>
-                  <h3 className="mb-4 text-2xl font-bold leading-tight">{event.title}</h3>
+                  <h3 className="mb-4 text-2xl font-bold leading-tight">
+                    {event.title}
+                  </h3>
                   <div className="mb-6 space-y-2 text-sm text-gray-600">
                     <p className="flex items-center gap-2">
                       <Calendar className="h-4 w-4" />
@@ -261,7 +252,9 @@ export default function Home() {
                       {event.location}
                     </p>
                   </div>
-                  <p className="mb-6 leading-relaxed text-gray-700">{event.description}</p>
+                  <p className="mb-6 leading-relaxed text-gray-700">
+                    {event.description}
+                  </p>
                   <button className="group/btn flex items-center gap-2 font-semibold transition-all hover:gap-3">
                     Selengkapnya
                     <ArrowRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
@@ -273,62 +266,64 @@ export default function Home() {
         </div>
       </section>
 
-      {/* About Church Section */}
+      {/* Visi & Misi Section */}
       <section id="tentang" className="relative bg-black py-24 md:py-32">
         <div className="mx-auto max-w-7xl px-6">
-          <div className="grid items-center gap-16 md:grid-cols-2">
+          <div className="grid gap-16 md:grid-cols-2">
+            {/* VISI */}
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <p className="mb-3 text-sm font-medium uppercase tracking-[0.3em] text-gray-500">
-                Tentang Kami
-              </p>
-              <h2 className="mb-6 text-4xl font-bold leading-tight tracking-tight md:text-5xl">
-                Keluarga Besar
-                <br />
-                HGC Church
+              <h2 className="mb-6 text-3xl font-bold uppercase tracking-tight text-white md:text-4xl">
+                VISI
               </h2>
-              <p className="mb-6 text-lg leading-relaxed text-gray-400">
-                HGC Church adalah komunitas Kristen yang berdedikasi untuk mengasihi Tuhan dan melayani sesama. Kami percaya bahwa setiap orang berharga di mata Tuhan dan memiliki tujuan yang luar biasa.
+              <p className="text-2xl font-bold leading-relaxed text-gray-300 md:text-3xl">
+                Menjadi Keluarga Kerajaan Allah Yang Dikuduskan Hidup Dalam
+                Kasih dan Berbuah.
               </p>
-              <p className="mb-8 text-lg leading-relaxed text-gray-400">
-                Visi kami adalah membangun gereja yang penuh dengan kasih, iman, dan pengharapan. Melalui ibadah, persekutuan, dan pelayanan, kami bertumbuh bersama dalam karakter Kristus.
-              </p>
-              <button className="flex items-center gap-3 border border-white bg-white px-8 py-4 font-semibold tracking-wide text-black transition-all hover:bg-black hover:text-white">
-                PELAJARI LEBIH LANJUT
-                <ArrowRight className="h-5 w-5" />
-              </button>
             </motion.div>
 
+            {/* MISI */}
             <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="grid grid-cols-2 gap-6"
+              transition={{ duration: 0.8, delay: 0.2 }}
             >
-              {[
-                { icon: Users, label: "Jemaat", value: "1500+" },
-                { icon: Calendar, label: "Tahun Berdiri", value: "2000" },
-                { icon: MapPin, label: "Lokasi", value: "Jakarta" },
-                { icon: Clock, label: "Ibadah/Minggu", value: "3x" },
-              ].map((stat, index) => (
-                <motion.div
-                  key={stat.label}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1, duration: 0.5 }}
-                  className="border border-white/10 bg-white/5 p-8 backdrop-blur-sm transition-all hover:border-white/20 hover:bg-white/10"
-                >
-                  <stat.icon className="mb-4 text-white" size={32} strokeWidth={1.5} />
-                  <h3 className="mb-2 text-3xl font-bold">{stat.value}</h3>
-                  <p className="text-sm text-gray-400">{stat.label}</p>
-                </motion.div>
-              ))}
+              <h2 className="mb-6 text-3xl font-bold uppercase tracking-tight text-white md:text-4xl">
+                MISI
+              </h2>
+              <ol className="space-y-4 text-lg font-semibold text-gray-300 md:text-xl">
+                <li className="flex gap-3">
+                  <span className="font-bold">1.</span>
+                  <span>
+                    Memperlengkapi Jemaat Dengan Kebenaran Firman Tuhan
+                  </span>
+                </li>
+                <li className="flex gap-3">
+                  <span className="font-bold">2.</span>
+                  <span>
+                    Membimbing Jemaat Untuk Bertumbuh Dewasa Menjadi Serupa dan
+                    Segambar Kristus
+                  </span>
+                </li>
+                <li className="flex gap-3">
+                  <span className="font-bold">3.</span>
+                  <span>
+                    Membangun Jemaat Sesuai Nilai-nilai Gereja – REBORN
+                  </span>
+                </li>
+                <li className="flex gap-3">
+                  <span className="font-bold">4.</span>
+                  <span>
+                    Memberdayakan Jemaat Bagi Pekerjaan Pelayanan Untuk
+                    Pembangunan Tubuh Kristus
+                  </span>
+                </li>
+              </ol>
             </motion.div>
           </div>
         </div>
@@ -339,49 +334,77 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-6">
           <div className="grid gap-12 md:grid-cols-4">
             <div className="md:col-span-2">
-              <h3 className="mb-4 text-2xl font-bold tracking-tight">
-                HGC CHURCH
-              </h3>
+              <img
+                src="/logo-main-text.webp"
+                alt="HGC Church"
+                className="mb-4 h-14 w-auto md:h-16"
+              />
               <p className="mb-6 max-w-md leading-relaxed text-gray-400">
-                Membangun komunitas yang mengasihi Tuhan dan melayani sesama dengan penuh sukacita dan kasih.
+                Menjadi Keluarga Kerajaan Allah Yang Dikuduskan Hidup Dalam
+                Kasih dan Berbuah
               </p>
               <div className="space-y-2 text-sm text-gray-400">
                 <p className="flex items-center gap-2">
                   <MapPin className="h-4 w-4" />
-                  Jl. Gereja No. 123, Jakarta Selatan
+                  Graha HGC Marina (Ruko Marina Plaza Blok D8-9) Manado 95111
                 </p>
                 <p className="flex items-center gap-2">
                   <Clock className="h-4 w-4" />
-                  Minggu: 07:00, 09:00, 17:00 WIB
+                  Open Every Day
+                </p>
+                <p className="flex items-center gap-2">
+                  <Phone className="h-4 w-4" />
+                  0812-9596-0003
+                </p>
+                <p className="flex items-center gap-2">
+                  <Mail className="h-4 w-4" />
+                  jki.hisgrace@gmail.com
                 </p>
               </div>
             </div>
 
             <div>
-              <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider">Menu</h4>
+              <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider">
+                Menu
+              </h4>
               <ul className="space-y-3 text-sm text-gray-400">
                 <li>
-                  <a href="#beranda" className="transition-colors hover:text-white">
+                  <a
+                    href="#beranda"
+                    className="transition-colors hover:text-white"
+                  >
                     Beranda
                   </a>
                 </li>
                 <li>
-                  <a href="#tentang" className="transition-colors hover:text-white">
+                  <a
+                    href="#tentang"
+                    className="transition-colors hover:text-white"
+                  >
                     Tentang
                   </a>
                 </li>
                 <li>
-                  <a href="#ibadah" className="transition-colors hover:text-white">
+                  <a
+                    href="#ibadah"
+                    className="transition-colors hover:text-white"
+                  >
                     Ibadah
                   </a>
                 </li>
                 <li>
-                  <a href="#event" className="transition-colors hover:text-white">
+                  <a
+                    href="#event"
+                    className="transition-colors hover:text-white"
+                  >
                     Event
                   </a>
                 </li>
                 <li>
-                  <a href="#kontak" className="transition-colors hover:text-white">
+                  <a
+                    href="#kontak"
+                    className="transition-colors hover:text-white"
+                  >
                     Kontak
                   </a>
                 </li>
@@ -389,26 +412,35 @@ export default function Home() {
             </div>
 
             <div>
-              <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider">Sosial Media</h4>
+              <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider">
+                Sosial Media
+              </h4>
               <ul className="space-y-3 text-sm text-gray-400">
                 <li>
-                  <a href="#" className="transition-colors hover:text-white">
+                  <a
+                    href="https://www.instagram.com/hgcmanado/"
+                    target="_blank"
+                    className="transition-colors hover:text-white"
+                  >
                     Instagram
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="transition-colors hover:text-white">
+                  <a
+                    href="http://facebook.com/Hisgrace.id"
+                    target="_blank"
+                    className="transition-colors hover:text-white"
+                  >
                     Facebook
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="transition-colors hover:text-white">
+                  <a
+                    href="https://www.youtube.com/@HisGraceChurch"
+                    target="_blank"
+                    className="transition-colors hover:text-white"
+                  >
                     YouTube
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="transition-colors hover:text-white">
-                    Twitter
                   </a>
                 </li>
               </ul>
