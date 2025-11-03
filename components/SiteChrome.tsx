@@ -52,11 +52,11 @@ export default function SiteChrome({ children }: Props) {
           <div className="hidden space-x-12 lg:flex lg:items-center">
             {[
               { label: "Memberi", href: "/give" },
-              { label: "Pelayanan", href: "/#pelayanan" },
-              { label: "Komunitas", href: "/#tentang" },
-              { label: "Ibadah", href: "/#ibadah" },
-              { label: "Event", href: "/#event" },
-              { label: "About", href: "/#tentang" },
+              { label: "Melayani", href: "/serve" },
+              { label: "Komunitas", href: "/group" },
+              { label: "Ibadah", href: "/worship" },
+              { label: "Event", href: "/event" },
+              { label: "About", href: "/about" },
             ].map((item, index) => (
               <motion.a
                 key={item.label}
@@ -154,12 +154,12 @@ export default function SiteChrome({ children }: Props) {
             </div>
             <nav className="grid gap-1">
               {[
-                { label: "Give", href: "/give" },
-                { label: "Pelayanan", href: "/#pelayanan" },
-                { label: "Komunitas", href: "/#tentang" },
-                { label: "Ibadah", href: "/#ibadah" },
-                { label: "Event", href: "/#event" },
-                { label: "About", href: "/#tentang" },
+                { label: "Memberi", href: "/give" },
+                { label: "Melayani", href: "/serve" },
+                { label: "Komunitas", href: "/group" },
+                { label: "Ibadah", href: "/worship" },
+                { label: "Event", href: "/event" },
+                { label: "About", href: "/about" },
               ].map(({ label, href }) => (
                 <a
                   key={label}

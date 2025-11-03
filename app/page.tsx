@@ -301,7 +301,7 @@ export default function Home() {
             >
               <div className="relative z-10 flex flex-1 flex-col">
                 <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-gray-400">
-                  Pelayanan Pemuda
+                  Ibadah Pemuda
                 </p>
                 <h3 className="mb-4 text-3xl font-bold leading-tight text-white">
                   Youth and Teens Engage
@@ -328,7 +328,7 @@ export default function Home() {
             >
               <div className="relative z-10 flex flex-1 flex-col">
                 <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-cyan-200">
-                  Pelayanan Anak
+                  Ibadah Anak
                 </p>
                 <h3 className="mb-4 text-3xl font-bold leading-tight text-white">
                   Kids
