@@ -132,6 +132,21 @@ function LatestSermonsSection() {
 
 export default function Home() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  useEffect(() => {
+    function onKey(e: KeyboardEvent) {
+      if (e.key === "Escape") setMobileOpen(false);
+    }
+    if (mobileOpen) {
+      document.addEventListener("keydown", onKey);
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [mobileOpen]);
   return (
     <div className="min-h-screen bg-black text-white">
       {/* Navigation */}
@@ -193,67 +208,91 @@ export default function Home() {
               className="h-5 w-5"
             >
               {mobileOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6 18L18 6M6 6l12 12"
+                />
               ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" d="M3 6h18M3 12h18M3 18h18" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M3 6h18M3 12h18M3 18h18"
+                />
               )}
             </svg>
           </button>
         </div>
-
-        {/* Mobile & Tablet slide-over */}
-        {mobileOpen && (
-          <>
-            <div
-              className="fixed inset-0 z-40 bg-black/60 lg:hidden"
-              onClick={() => setMobileOpen(false)}
-            />
-            <motion.aside
-              initial={{ x: "100%", opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              exit={{ x: "100%", opacity: 0 }}
-              transition={{ type: "tween", duration: 0.25 }}
-              className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-[#1D1C1C] px-4 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10 tablet:px-6 desktop:px-8 lg:hidden"
-              role="dialog"
-              aria-modal="true"
-            >
-              <div className="mb-6 flex items-center justify-between">
-                <span className="text-lg font-bold">GMS</span>
-                <button
-                  onClick={() => setMobileOpen(false)}
-                  className="rounded border border-white/10 px-3 py-1 text-sm uppercase tracking-wider text-white/90 hover:bg-white/5"
-                >
-                  closeMenu
-                </button>
-              </div>
-              <nav className="grid gap-2">
-                {[
-                  { label: "BERANDA", href: "#beranda" },
-                  { label: "GEREJA", href: "#tentang" },
-                  { label: "IBADAH", href: "#ibadah" },
-                  { label: "CG", href: "#komunitas" },
-                  { label: "TERHUBUNG", href: "#kontak" },
-                  { label: "MEDIA", href: "#ibadah" },
-                  { label: "MEMBERI", href: "#memberi" },
-                  { label: "MISI", href: "#tentang" },
-                  { label: "PELAYANAN", href: "#pelayanan" },
-                  { label: "MSJ", href: "#" },
-                  { label: "TOKO", href: "#" },
-                ].map(({ label, href }) => (
-                  <a
-                    key={label}
-                    href={href}
-                    onClick={() => setMobileOpen(false)}
-                    className="block rounded border border-white/10 px-4 py-3 text-sm font-bold uppercase tracking-wider text-white/90 hover:bg-white/5"
-                  >
-                    {label}
-                  </a>
-                ))}
-              </nav>
-            </motion.aside>
-          </>
-        )}
       </motion.nav>
+
+      {/* Mobile & Tablet slide-over (portal outside nav to avoid clipping) */}
+      {mobileOpen && (
+        <>
+          <div
+            className="fixed inset-0 z-[60] bg-black/60 lg:hidden"
+            onClick={() => setMobileOpen(false)}
+          />
+          <motion.aside
+            initial={{ x: "100%", opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: "100%", opacity: 0 }}
+            transition={{ type: "tween", duration: 0.25 }}
+            className="fixed inset-y-0 right-0 z-[70] w-full overflow-y-auto bg-[#1D1C1C] px-4 py-6 sm:max-w-sm tablet:px-6 desktop:px-8 lg:hidden"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="mobile-menu-title"
+          >
+            <div className="mb-6 flex items-center justify-between">
+              <img
+                id="mobile-menu-title"
+                src="/logo-main-text.webp"
+                alt="HGC Church"
+                className="h-8 w-auto"
+              />
+              <button
+                onClick={() => setMobileOpen(false)}
+                className="inline-flex h-10 w-10 items-center justify-center rounded text-white/90 hover:text-white focus:outline-none"
+                aria-label="Tutup menu"
+                autoFocus
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  className="h-6 w-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+            </div>
+            <nav className="grid gap-1">
+              {[
+                { label: "Memberi", href: "#memberi" },
+                { label: "Pelayanan", href: "#pelayanan" },
+                { label: "Komunitas", href: "#komunitas" },
+                { label: "Ibadah", href: "#ibadah" },
+                { label: "Event", href: "#event" },
+                { label: "About", href: "#tentang" },
+              ].map(({ label, href }) => (
+                <a
+                  key={label}
+                  href={href}
+                  onClick={() => setMobileOpen(false)}
+                  className="block px-1 py-2 text-base font-bold uppercase tracking-wider text-white/90 hover:text-white"
+                >
+                  {label}
+                </a>
+              ))}
+            </nav>
+          </motion.aside>
+        </>
+      )}
 
       {/* Hero Section */}
       <section
@@ -262,10 +301,10 @@ export default function Home() {
       >
         {/* Background Image - Worship & Praise */}
         <div
-        	className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        	style={{
-        	  backgroundImage: "url('/home/bg-hero-section.jpg')",
-        	}}
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: "url('/home/bg-hero-section.jpg')",
+          }}
         />
 
         {/* Dark overlay untuk readability */}
