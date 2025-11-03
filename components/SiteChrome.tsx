@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { MapPin, Clock, Phone, Mail, ArrowRight, Calendar } from "lucide-react";
+import { usePathname } from "next/navigation";
 
 interface Props {
   children: React.ReactNode;
@@ -10,6 +11,7 @@ interface Props {
 
 export default function SiteChrome({ children }: Props) {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
@@ -64,7 +66,15 @@ export default function SiteChrome({ children }: Props) {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 * index }}
                 href={item.href}
-                className="text-sm font-bold uppercase tracking-wider text-white transition-colors hover:text-gray-400"
+                className={[
+                  "relative text-sm font-bold uppercase tracking-wider text-white transition-colors hover:text-gray-400",
+                  // underline via transform for smoother animation
+                  "after:pointer-events-none after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-full after:bg-white after:origin-left after:scale-x-0 after:transition-transform after:duration-300 after:ease-out",
+                  "hover:after:scale-x-100",
+                  pathname && pathname.startsWith(item.href)
+                    ? "text-gray-300 after:scale-x-100"
+                    : "",
+                ].join(" ")}
               >
                 {item.label}
               </motion.a>
@@ -165,9 +175,19 @@ export default function SiteChrome({ children }: Props) {
                   key={label}
                   href={href}
                   onClick={() => setMobileOpen(false)}
-                  className="block px-1 py-2 text-base font-bold uppercase tracking-wider text-white/90 hover:text-white"
+                  className="inline-block px-1 py-2 text-base font-bold uppercase tracking-wider text-white/90 hover:text-white"
                 >
-                  {label}
+                  <span
+                    className={[
+                      "relative inline-block",
+                      "after:absolute after:-bottom-0.5 after:left-0 after:right-0 after:h-0.5 after:bg-white",
+                      pathname && pathname.startsWith(href)
+                        ? "after:opacity-100"
+                        : "after:opacity-0",
+                    ].join(" ")}
+                  >
+                    {label}
+                  </span>
                 </a>
               ))}
             </nav>

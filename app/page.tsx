@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Play, MapPin, Calendar, Clock, ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 interface YouTubeVideo {
   id: string;
@@ -43,12 +44,11 @@ function LatestSermonsSection() {
           className="mb-16 text-center"
         >
           <h2 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
-            Ibadah Minggu Ini
+            Konten Minggu ini
           </h2>
           <p className="mx-auto max-w-3xl text-lg text-gray-400">
-            Ikuti ibadah dan penyembahan yang menghadirkan hadirat Tuhan.
-            Biarlah Firman-Nya meneguhkan iman, memulihkan hati, dan menuntun
-            setiap langkah kita.
+            Temukan konten terbaru minggu ini: khotbah, pujian, dan highlight
+            pelayanan untuk membangun iman dan menginspirasi langkah Anda.
           </p>
         </motion.div>
 
@@ -524,14 +524,14 @@ export default function Home() {
               memuliakan Tuhan.
             </p>
             <div className="flex items-center justify-center gap-4">
-              <a
-                href="https://wa.me/6281295960003"
+              <Link
+                href="/serve"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center rounded-md bg-white px-6 py-3 font-semibold text-black transition-colors hover:bg-gray-200"
               >
                 Gabung Pelayanan
-              </a>
+              </Link>
             </div>
           </motion.div>
         </div>
