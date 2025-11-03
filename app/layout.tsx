@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import SiteChrome from "../components/SiteChrome";
 
 export const metadata: Metadata = {
   title: "HGC Church - Welcome Home",
@@ -33,7 +34,7 @@ export default function RootLayout({
           fontFamily: "'Montserrat', system-ui, -apple-system, sans-serif",
         }}
       >
-        {children}
+        <SiteChrome>{children}</SiteChrome>
       </body>
     </html>
   );
