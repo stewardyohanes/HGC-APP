@@ -75,3 +75,18 @@ export const IconEvent: React.FC<IconProps> = (props) => (
 );
 
 
+export const IconAngel: React.FC<IconProps> = (props) => (
+  <BaseIcon {...props}>
+    {/* halo */}
+    <ellipse cx="12" cy="5" rx="5.5" ry="2" />
+    {/* head */}
+    <circle cx="12" cy="10" r="2.5" />
+    {/* body/robe */}
+    <path d="M8 21c0-3.5 1.8-6 4-6s4 2.5 4 6" />
+    {/* wings */}
+    <path d="M3.5 12c2-.5 3.7-1.7 5-3.5C9 10.5 8.2 12.7 6 14c-1 .6-1.9.9-2.5 1" />
+    <path d="M20.5 12c-2-.5-3.7-1.7-5-3.5 0 2 .8 4.2 3 5.5 1 .6 1.9.9 2.5 1" />
+  </BaseIcon>
+);
+
+

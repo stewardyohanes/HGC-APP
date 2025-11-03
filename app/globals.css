@@ -157,3 +157,12 @@
   opacity: .22;
   mix-blend-mode: overlay;
 }
+
+/* Hide global chrome for special pages (e.g., NotFound) */
+body.hide-chrome nav,
+body.hide-chrome footer {
+  display: none !important;
+}
+body.hide-chrome main {
+  padding-top: 0 !important;
+}
