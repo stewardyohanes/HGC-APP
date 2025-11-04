@@ -12,11 +12,10 @@ export const metadata: Metadata = {
     description:
       "Temukan kelompok kecil di berbagai lokasi untuk bertumbuh dalam iman dan komunitas.",
     url: "https://www.hgcchurch.id/group",
+    images: ["/logo-main-text.webp"],
   },
 };
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return children;
 }
-
-

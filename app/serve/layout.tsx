@@ -12,11 +12,10 @@ export const metadata: Metadata = {
     description:
       "Bergabung melayani di HGC Church: usher, multimedia, kids, creative, worship, event.",
     url: "https://www.hgcchurch.id/serve",
+    images: ["/logo-main-text.webp"],
   },
 };
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return children;
 }
-
-

@@ -41,16 +41,14 @@ export const metadata: Metadata = {
     title: "HGC Church - Welcome Home",
     description:
       "Gereja JKI His Grace Church Manado. Ibadah, komunitas, dan pelayanan.",
-    images: [
-      { url: "/logo-main.webp", width: 1200, height: 630, alt: "HGC Church" },
-    ],
+    images: ["/logo-main-text.webp"],
   },
   twitter: {
     card: "summary_large_image",
     title: "HGC Church - Welcome Home",
     description:
       "Gereja JKI His Grace Church Manado. Ibadah, komunitas, dan pelayanan.",
-    images: ["/logo-main.webp"],
+    images: ["/logo-main-text.webp"],
   },
   alternates: {
     canonical: "https://www.hgcchurch.id/",
@@ -99,7 +97,7 @@ export default function RootLayout({
               },
               sameAs: [
                 "https://www.instagram.com/hgcmanado/",
-                "http://facebook.com/Hisgrace.id",
+                "https://facebook.com/Hisgrace.id",
                 "https://www.youtube.com/@HisGraceChurch",
               ],
             }),

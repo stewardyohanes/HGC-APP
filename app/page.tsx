@@ -14,7 +14,7 @@ export default function Home() {
       <HeroClient />
 
       {/* Visi & Misi Section */}
-      <section id="tentang" className="relative bg-black py-24 md:py-32">
+      <section className="relative bg-black py-24 md:py-32">
         <div className="mx-auto max-w-7xl px-6">
           <div className="grid gap-16 md:grid-cols-2">
             {/* VISI */}
@@ -76,7 +76,7 @@ export default function Home() {
       <EventsClient />
 
       {/* Join Ministry Call-to-Action Section */}
-      <section id="pelayanan" className="relative py-24 md:py-32">
+      <section className="relative py-24 md:py-32">
         <div className="absolute inset-0 grayscale">
           <Image
             src="/home/bg-join-ministry.webp"

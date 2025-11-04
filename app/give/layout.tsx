@@ -12,11 +12,10 @@ export const metadata: Metadata = {
     description:
       "Memberi dengan sukacita sebagai wujud penyembahan kepada Yesus di HGC Church.",
     url: "https://www.hgcchurch.id/give",
+    images: ["/logo-main-text.webp"],
   },
 };
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return children;
 }
-
-
