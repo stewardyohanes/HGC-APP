@@ -137,7 +137,7 @@ export default function Home() {
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: "url('/home/bg-hero-section.jpg')",
+            backgroundImage: "url('/home/bg-hero-section.webp')",
           }}
         />
 
@@ -527,7 +527,7 @@ export default function Home() {
       <section id="pelayanan" className="relative py-24 md:py-32">
         <div
           className="absolute inset-0 bg-cover bg-fixed bg-center grayscale"
-          style={{ backgroundImage: "url('/home/bg-join-ministry.jpg')" }}
+          style={{ backgroundImage: "url('/home/bg-join-ministry.webp')" }}
         />
         <div className="pointer-events-none absolute inset-0 bg-black/50" />
         <div className="noise-overlay" />

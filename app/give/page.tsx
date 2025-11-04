@@ -78,7 +78,7 @@ export default function GivePage() {
             QRIS (Scan untuk memberi)
           </p>
           <Image
-            src="/give/qris.jpg"
+            src="/give/qris.webp"
             alt="QRIS JKI His Grace Church"
             width={768}
             height={1055}
