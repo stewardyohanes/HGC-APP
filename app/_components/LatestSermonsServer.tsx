@@ -1,18 +1,10 @@
 import LatestSermonsClient, { type YouTubeVideo } from "./LatestSermonsClient";
+import { fetchLatestYouTubeVideos } from "../_lib/youtube";
 
 async function getVideos(): Promise<YouTubeVideo[]> {
   try {
-    const base =
-      process.env.NEXT_PUBLIC_SITE_URL ||
-      (process.env.VERCEL_URL
-        ? `https://${process.env.VERCEL_URL}`
-        : process.env.NODE_ENV === "development"
-        ? "http://localhost:3000"
-        : "https://www.hgcchurch.id");
-    const res = await fetch(`${base}/api/youtube`, { next: { revalidate: 300 } });
-    if (!res.ok) return [];
-    const data = await res.json();
-    return data.videos ?? [];
+    const videos = await fetchLatestYouTubeVideos();
+    return videos;
   } catch {
     return [];
   }

@@ -1,16 +1,10 @@
 import { NextResponse } from "next/server";
+import { fetchLatestYouTubeVideos } from "@/app/_lib/youtube";
 
 export const dynamic = "force-static";
 export const revalidate = 300;
 
-interface YouTubeVideo {
-  id: string;
-  title: string;
-  description: string;
-  thumbnail: string;
-  published: string;
-  link: string;
-}
+// interface removed; using shared util types
 
 async function resolveChannelIdFromHandleOrUsername(
   input: string
@@ -96,11 +90,15 @@ export async function GET() {
     // 2. Username: https://www.youtube.com/feeds/videos.xml?user=USERNAME
 
     // Prefer explicit channel id via env; otherwise use known stable default for HGC
-    const envUsernameOrHandle = process.env.YOUTUBE_USERNAME || "@HisGraceChurch";
-    const defaultChannelId = process.env.YOUTUBE_CHANNEL_ID || "UC27T-m64XnJ-FAEnMJ1XlWw";
+    const envUsernameOrHandle =
+      process.env.YOUTUBE_USERNAME || "@HisGraceChurch";
+    const defaultChannelId =
+      process.env.YOUTUBE_CHANNEL_ID || "UC27T-m64XnJ-FAEnMJ1XlWw";
 
     // Try to resolve from handle, but always include default channel first
-    const maybeResolved = await resolveChannelIdFromHandleOrUsername(envUsernameOrHandle);
+    const maybeResolved = await resolveChannelIdFromHandleOrUsername(
+      envUsernameOrHandle
+    );
 
     // Build candidate RSS URLs: default channel first, then resolved, then legacy user
     const legacyUsername = envUsernameOrHandle.replace(/^@/, "");
@@ -119,97 +117,10 @@ export async function GET() {
       );
     }
 
-    let xmlText: string | null = null;
-    for (const rssUrl of rssCandidates) {
-      try {
-        const response = await fetch(rssUrl, {
-          headers: {
-            "User-Agent":
-              "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
-            Accept:
-              "application/atom+xml,application/xml;q=0.9,text/xml;q=0.8,*/*;q=0.7",
-            "Accept-Language": "en-US,en;q=0.9",
-            Referer: "https://www.youtube.com/",
-          },
-          // Reduce cache during troubleshooting; increase later if needed
-          next: { revalidate: 300 },
-        });
-        if (!response.ok) {
-          continue;
-        }
-        const text = await response.text();
-        if (/<entry>[\s\S]*?<\/entry>/.test(text)) {
-          xmlText = text;
-          break;
-        }
-      } catch {
-        // try next candidate
-      }
-    }
-
-    if (!xmlText) {
+    const videos = await fetchLatestYouTubeVideos();
+    if (!videos.length) {
       console.error("All RSS candidates failed or contained no entries.");
-      return NextResponse.json({ videos: [] }, { status: 200 });
     }
-
-    // Parse XML manually (robust regex-based extraction)
-    const videos: YouTubeVideo[] = [];
-    const entryRegex = /<entry>([\s\S]*?)<\/entry>/g;
-    const entries = xmlText.match(entryRegex) || [];
-
-    entries.slice(0, 9).forEach((entry) => {
-      const videoIdMatch = entry.match(/<yt:videoId>(.*?)<\/yt:videoId>/);
-      const titleMatch = entry.match(/<title>([\s\S]*?)<\/title>/);
-      // Some entries may include multiple link tags; match the alternate/watch one if present
-      const linkMatch =
-        entry.match(
-          /<link[^>]+rel=["']alternate["'][^>]*href=["']([^"']+)["']/
-        ) || entry.match(/<link\s+href=["']([^"']+)["']/);
-      const publishedMatch = entry.match(/<published>(.*?)<\/published>/);
-      const mediaDescriptionMatch = entry.match(
-        /<media:description>([\s\S]*?)<\/media:description>/
-      );
-      const mediaThumbMatch = entry.match(
-        /<media:thumbnail[^>]+url=["']([^"']+)["'][^>]*\/>/
-      );
-
-      if (videoIdMatch && titleMatch) {
-        const videoId = videoIdMatch[1].trim();
-        const rawTitle = titleMatch[1]
-          .replace(/<!\[CDATA\[([\s\S]*?)\]\]>/, "$1")
-          .trim();
-        const description = mediaDescriptionMatch
-          ? mediaDescriptionMatch[1]
-              .replace(/<!\[CDATA\[([\s\S]*?)\]\]>/, "$1")
-              .replace(/\s+/g, " ")
-              .trim()
-              .slice(0, 150) +
-            (mediaDescriptionMatch[1].length > 150 ? "..." : "")
-          : "";
-
-        // Prefer media:thumbnail if present, fallback to ytimg
-        const thumbnail = mediaThumbMatch
-          ? mediaThumbMatch[1].trim()
-          : `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
-
-        // Fallback link if missing: construct standard watch URL
-        const link = (
-          linkMatch
-            ? linkMatch[1]
-            : `https://www.youtube.com/watch?v=${videoId}`
-        ).trim();
-
-        videos.push({
-          id: videoId,
-          title: rawTitle,
-          description,
-          thumbnail,
-          published: publishedMatch ? publishedMatch[1].trim() : "",
-          link,
-        });
-      }
-    });
-
     return NextResponse.json({ videos });
   } catch (error) {
     console.error("Error fetching YouTube videos:", error);
