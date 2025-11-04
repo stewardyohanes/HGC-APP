@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { MapPin, Clock, Phone, Mail, ArrowRight, Calendar } from "lucide-react";
-import { usePathname } from "next/navigation";
-import Link from "next/link";
+import { Clock, Mail, MapPin, Phone } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
 interface Props {
   children: React.ReactNode;
@@ -14,6 +14,7 @@ interface Props {
 export default function SiteChrome({ children }: Props) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
+  const [bannerClosed, setBannerClosed] = useState(false);
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
@@ -31,12 +32,70 @@ export default function SiteChrome({ children }: Props) {
     };
   }, [mobileOpen]);
 
+  // Development/Beta banner visibility: always show on navigation/refresh (unless disabled by env)
+  const allowBanner = process.env.NEXT_PUBLIC_SHOW_DEV_BANNER !== "false";
+  useEffect(() => {
+    // reset closed state after navigation asynchronously to satisfy lint rule
+    const id = setTimeout(() => setBannerClosed(false), 0);
+    return () => clearTimeout(id);
+  }, [pathname]);
+  const devBannerVisible = allowBanner && !bannerClosed;
+
   return (
     <div className="min-h-screen bg-black text-white">
+      {devBannerVisible && (
+        <div className="fixed top-0 z-50 w-full">
+          <div className="w-full">
+            <div className="flex w-full items-center justify-between gap-3 border-b border-yellow-600 bg-yellow-500 text-black">
+              <div className="relative w-full overflow-hidden">
+                <div className="marquee-line whitespace-nowrap will-change-transform py-2 text-2xl md:text-3xl font-extrabold tracking-wide">
+                  <span className="mx-8">
+                    Website ini sedang dalam pengembangan — Konten & fitur belum
+                    final — Terima kasih atas pengertiannya 🙏
+                  </span>
+                  <span className="mx-8">
+                    Website ini sedang dalam pengembangan — Konten & fitur belum
+                    final — Terima kasih atas pengertiannya 🙏
+                  </span>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  setBannerClosed(true);
+                }}
+                className="mr-2 hidden md:inline-flex shrink-0 items-center rounded bg-yellow-600/20 px-2 py-1 text-xs font-semibold text-black hover:bg-yellow-600/30"
+                aria-label="Tutup pemberitahuan pengembangan"
+              >
+                Tutup
+              </button>
+            </div>
+            <style jsx>{`
+              @keyframes marquee {
+                0% {
+                  transform: translateX(0%);
+                }
+                100% {
+                  transform: translateX(-50%);
+                }
+              }
+              .marquee-line {
+                display: inline-block;
+                min-width: 200%;
+                animation: marquee 20s linear infinite;
+              }
+            `}</style>
+          </div>
+        </div>
+      )}
+
       <motion.nav
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        className="fixed top-0 z-50 w-full border-b border-white/5 bg-black/80 backdrop-blur-xl"
+        className={[
+          "fixed z-40 w-full border-b border-white/5 bg-black/80 backdrop-blur-xl",
+          devBannerVisible ? "top-12 md:top-14" : "top-0",
+        ].join(" ")}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
           <motion.div
@@ -44,7 +103,7 @@ export default function SiteChrome({ children }: Props) {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
           >
-            <a href="/">
+            <Link href="/">
               <Image
                 src="/logo-main-text.webp"
                 alt="HGC Church"
@@ -53,7 +112,7 @@ export default function SiteChrome({ children }: Props) {
                 priority
                 className="h-12 w-auto md:h-14"
               />
-            </a>
+            </Link>
           </motion.div>
 
           <div className="hidden space-x-12 lg:flex lg:items-center">
@@ -83,7 +142,9 @@ export default function SiteChrome({ children }: Props) {
                       : "",
                   ].join(" ")}
                   aria-current={
-                    pathname && pathname.startsWith(item.href) ? "page" : undefined
+                    pathname && pathname.startsWith(item.href)
+                      ? "page"
+                      : undefined
                   }
                 >
                   {item.label}
@@ -126,10 +187,12 @@ export default function SiteChrome({ children }: Props) {
         </div>
       </motion.nav>
 
+      {/* banner dipindah ke paling atas */}
+
       {mobileOpen && (
         <>
           <div
-            className="fixed inset-0 z-[60] bg-black/60 lg:hidden"
+            className="fixed inset-0 z-60 bg-black/60 lg:hidden"
             onClick={() => setMobileOpen(false)}
           />
           <motion.aside
@@ -137,13 +200,13 @@ export default function SiteChrome({ children }: Props) {
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: "100%", opacity: 0 }}
             transition={{ type: "tween", duration: 0.25 }}
-            className="fixed inset-y-0 right-0 z-[70] w-full overflow-y-auto bg-[#1D1C1C] px-4 py-6 sm:max-w-sm tablet:px-6 desktop:px-8 lg:hidden"
+            className="fixed inset-y-0 right-0 z-70 w-full overflow-y-auto bg-[#1D1C1C] px-4 py-6 sm:max-w-sm tablet:px-6 desktop:px-8 lg:hidden"
             role="dialog"
             aria-modal="true"
             aria-labelledby="mobile-menu-title"
           >
             <div className="mb-6 flex items-center justify-between">
-              <a href="/">
+              <Link href="/">
                 <Image
                   id="mobile-menu-title"
                   src="/logo-main-text.webp"
@@ -152,7 +215,7 @@ export default function SiteChrome({ children }: Props) {
                   height={96}
                   className="h-8 w-auto"
                 />
-              </a>
+              </Link>
               <button
                 onClick={() => setMobileOpen(false)}
                 className="inline-flex h-10 w-10 items-center justify-center rounded text-white/90 hover:text-white focus:outline-none"
@@ -212,7 +275,7 @@ export default function SiteChrome({ children }: Props) {
         </>
       )}
 
-      <main className="pt-20">{children}</main>
+      <main className={devBannerVisible ? "pt-28" : "pt-20"}>{children}</main>
 
       <footer className="border-t border-white/5 bg-black py-16">
         <div className="mx-auto max-w-7xl px-6">
@@ -255,41 +318,41 @@ export default function SiteChrome({ children }: Props) {
               </h4>
               <ul className="space-y-3 text-sm text-gray-400">
                 <li>
-                  <a href="/" className="transition-colors hover:text-white">
+                  <Link href="/" className="transition-colors hover:text-white">
                     Beranda
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    href="/#tentang"
+                  <Link
+                    href="/about"
                     className="transition-colors hover:text-white"
                   >
                     Tentang
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    href="/#ibadah"
+                  <Link
+                    href="/serve"
                     className="transition-colors hover:text-white"
                   >
                     Ibadah
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    href="/#event"
+                  <Link
+                    href="/event"
                     className="transition-colors hover:text-white"
                   >
                     Event
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
+                  <Link
                     href="/give"
                     className="transition-colors hover:text-white"
                   >
                     Give
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
