@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { MapPin, Clock, Phone, Mail, ArrowRight, Calendar } from "lucide-react";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
+import Image from "next/image";
 
 interface Props {
   children: React.ReactNode;
@@ -43,9 +45,12 @@ export default function SiteChrome({ children }: Props) {
             transition={{ delay: 0.2 }}
           >
             <a href="/">
-              <img
+              <Image
                 src="/logo-main-text.webp"
                 alt="HGC Church"
+                width={512}
+                height={128}
+                priority
                 className="h-12 w-auto md:h-14"
               />
             </a>
@@ -53,31 +58,37 @@ export default function SiteChrome({ children }: Props) {
 
           <div className="hidden space-x-12 lg:flex lg:items-center">
             {[
-              { label: "Memberi", href: "/give" },
-              { label: "Melayani", href: "/serve" },
-              { label: "Komunitas", href: "/group" },
-              { label: "Ibadah", href: "/worship" },
-              { label: "Event", href: "/event" },
-              { label: "About", href: "/about" },
+              { label: "Memberi", href: "/give", prefetch: true },
+              { label: "Melayani", href: "/serve", prefetch: true },
+              { label: "Komunitas", href: "/group", prefetch: true },
+              { label: "Ibadah", href: "/worship", prefetch: false },
+              { label: "Event", href: "/event", prefetch: false },
+              { label: "About", href: "/about", prefetch: false },
             ].map((item, index) => (
-              <motion.a
+              <motion.div
                 key={item.label}
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 * index }}
-                href={item.href}
-                className={[
-                  "relative text-sm font-bold uppercase tracking-wider text-white transition-colors hover:text-gray-400",
-                  // underline via transform for smoother animation
-                  "after:pointer-events-none after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-full after:bg-white after:origin-left after:scale-x-0 after:transition-transform after:duration-300 after:ease-out",
-                  "hover:after:scale-x-100",
-                  pathname && pathname.startsWith(item.href)
-                    ? "text-gray-300 after:scale-x-100"
-                    : "",
-                ].join(" ")}
               >
-                {item.label}
-              </motion.a>
+                <Link
+                  href={item.href}
+                  prefetch={item.prefetch}
+                  className={[
+                    "relative text-sm font-bold uppercase tracking-wider text-white transition-colors hover:text-gray-400",
+                    "after:pointer-events-none after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-full after:bg-white after:origin-left after:scale-x-0 after:transition-transform after:duration-300 after:ease-out",
+                    "hover:after:scale-x-100",
+                    pathname && pathname.startsWith(item.href)
+                      ? "text-gray-300 after:scale-x-100"
+                      : "",
+                  ].join(" ")}
+                  aria-current={
+                    pathname && pathname.startsWith(item.href) ? "page" : undefined
+                  }
+                >
+                  {item.label}
+                </Link>
+              </motion.div>
             ))}
           </div>
 
@@ -133,10 +144,12 @@ export default function SiteChrome({ children }: Props) {
           >
             <div className="mb-6 flex items-center justify-between">
               <a href="/">
-                <img
+                <Image
                   id="mobile-menu-title"
                   src="/logo-main-text.webp"
                   alt="HGC Church"
+                  width={384}
+                  height={96}
                   className="h-8 w-auto"
                 />
               </a>
@@ -164,18 +177,22 @@ export default function SiteChrome({ children }: Props) {
             </div>
             <nav className="grid gap-1">
               {[
-                { label: "Memberi", href: "/give" },
-                { label: "Melayani", href: "/serve" },
-                { label: "Komunitas", href: "/group" },
-                { label: "Ibadah", href: "/worship" },
-                { label: "Event", href: "/event" },
-                { label: "About", href: "/about" },
-              ].map(({ label, href }) => (
-                <a
+                { label: "Memberi", href: "/give", prefetch: true },
+                { label: "Melayani", href: "/serve", prefetch: true },
+                { label: "Komunitas", href: "/group", prefetch: true },
+                { label: "Ibadah", href: "/worship", prefetch: false },
+                { label: "Event", href: "/event", prefetch: false },
+                { label: "About", href: "/about", prefetch: false },
+              ].map(({ label, href, prefetch }) => (
+                <Link
                   key={label}
                   href={href}
+                  prefetch={prefetch}
                   onClick={() => setMobileOpen(false)}
                   className="inline-block px-1 py-2 text-base font-bold uppercase tracking-wider text-white/90 hover:text-white"
+                  aria-current={
+                    pathname && pathname.startsWith(href) ? "page" : undefined
+                  }
                 >
                   <span
                     className={[
@@ -188,7 +205,7 @@ export default function SiteChrome({ children }: Props) {
                   >
                     {label}
                   </span>
-                </a>
+                </Link>
               ))}
             </nav>
           </motion.aside>
@@ -201,9 +218,11 @@ export default function SiteChrome({ children }: Props) {
         <div className="mx-auto max-w-7xl px-6">
           <div className="grid gap-12 md:grid-cols-4">
             <div className="md:col-span-2">
-              <img
+              <Image
                 src="/logo-main-text.webp"
                 alt="HGC Church"
+                width={512}
+                height={128}
                 className="mb-4 h-14 w-auto md:h-16"
               />
               <p className="mb-6 max-w-md leading-relaxed text-gray-400">

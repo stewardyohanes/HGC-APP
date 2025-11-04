@@ -1,5 +1,8 @@
 import { NextResponse } from "next/server";
 
+export const dynamic = "force-static";
+export const revalidate = 300;
+
 interface YouTubeVideo {
   id: string;
   title: string;
@@ -92,21 +95,22 @@ export async function GET() {
     // 1. Channel ID: https://www.youtube.com/feeds/videos.xml?channel_id=CHANNEL_ID
     // 2. Username: https://www.youtube.com/feeds/videos.xml?user=USERNAME
 
-    // Prefer explicit channel id via env; otherwise resolve from handle/username reliably
-    const envUsernameOrHandle =
-      process.env.YOUTUBE_USERNAME || "@HisGraceChurch";
-    const envChannelId = process.env.YOUTUBE_CHANNEL_ID;
+    // Prefer explicit channel id via env; otherwise use known stable default for HGC
+    const envUsernameOrHandle = process.env.YOUTUBE_USERNAME || "@HisGraceChurch";
+    const defaultChannelId = process.env.YOUTUBE_CHANNEL_ID || "UC27T-m64XnJ-FAEnMJ1XlWw";
 
-    const resolvedChannelId =
-      envChannelId ||
-      (await resolveChannelIdFromHandleOrUsername(envUsernameOrHandle));
+    // Try to resolve from handle, but always include default channel first
+    const maybeResolved = await resolveChannelIdFromHandleOrUsername(envUsernameOrHandle);
 
-    // Build candidate RSS URLs: channel_id first, fallback to legacy user feed
+    // Build candidate RSS URLs: default channel first, then resolved, then legacy user
     const legacyUsername = envUsernameOrHandle.replace(/^@/, "");
     const rssCandidates: string[] = [];
-    if (resolvedChannelId) {
+    rssCandidates.push(
+      `https://www.youtube.com/feeds/videos.xml?channel_id=${defaultChannelId}`
+    );
+    if (maybeResolved && maybeResolved !== defaultChannelId) {
       rssCandidates.push(
-        `https://www.youtube.com/feeds/videos.xml?channel_id=${resolvedChannelId}`
+        `https://www.youtube.com/feeds/videos.xml?channel_id=${maybeResolved}`
       );
     }
     if (legacyUsername) {
