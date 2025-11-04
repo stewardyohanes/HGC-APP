@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Play, MapPin, Calendar, Clock, ArrowRight } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 interface YouTubeVideo {
   id: string;
@@ -82,9 +83,11 @@ function LatestSermonsSection() {
                 className="group relative overflow-hidden border border-white/10 bg-zinc-950 transition-all hover:border-white/20 hover:scale-105"
               >
                 <div className="relative aspect-video w-full overflow-hidden">
-                  <img
+                  <Image
                     src={video.thumbnail}
                     alt={video.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="h-full w-full object-cover transition-transform group-hover:scale-110"
                   />
                   <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 transition-opacity group-hover:opacity-100">
@@ -142,7 +145,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-black/70" />
 
         {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/60 to-black" />
+        <div className="absolute inset-0 bg-linear-to-b from-black/50 via-black/60 to-black" />
 
         <div className="relative z-10 mx-auto max-w-6xl px-6 text-center">
           <motion.div
@@ -151,9 +154,12 @@ export default function Home() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="mb-8"
           >
-            <img
+            <Image
               src="/logo-main.webp"
               alt="HGC Church Logo"
+              width={768}
+              height={384}
+              priority
               className="mx-auto h-32 w-auto md:h-40 lg:h-48"
             />
           </motion.div>
@@ -283,12 +289,15 @@ export default function Home() {
                   Menghubungkan orang. Mengaktifkan iman melalui hubungan yang
                   bermakna.
                 </p>
-                <button className="flex items-center gap-2 text-sm font-semibold text-white transition-all hover:gap-3">
+                <button
+                  type="button"
+                  className="flex items-center gap-2 text-sm font-semibold text-white transition-all hover:gap-3"
+                >
                   Selengkapnya
                   <ArrowRight className="h-4 w-4" />
                 </button>
               </div>
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-900/50 to-blue-950" />
+              <div className="absolute inset-0 bg-linear-to-br from-blue-900/50 to-blue-950" />
             </motion.div>
 
             {/* Youth and Teens */}
@@ -310,12 +319,15 @@ export default function Home() {
                   Mengembangkan pemuda yang mempengaruhi budaya dan bertumbuh
                   dalam Kristus.
                 </p>
-                <button className="flex items-center gap-2 text-sm font-semibold text-white transition-all hover:gap-3">
+                <button
+                  type="button"
+                  className="flex items-center gap-2 text-sm font-semibold text-white transition-all hover:gap-3"
+                >
                   Selengkapnya
                   <ArrowRight className="h-4 w-4" />
                 </button>
               </div>
-              <div className="absolute right-0 top-0 h-full w-1/2 bg-gradient-to-l from-zinc-800/30 to-transparent" />
+              <div className="absolute right-0 top-0 h-full w-1/2 bg-linear-to-l from-zinc-800/30 to-transparent" />
             </motion.div>
 
             {/* Kids */}
@@ -337,12 +349,15 @@ export default function Home() {
                   Bermitra dengan orang tua untuk mengembangkan iman anak sejak
                   dini.
                 </p>
-                <button className="flex items-center gap-2 text-sm font-semibold text-white transition-all hover:gap-3">
+                <button
+                  type="button"
+                  className="flex items-center gap-2 text-sm font-semibold text-white transition-all hover:gap-3"
+                >
                   Selengkapnya
                   <ArrowRight className="h-4 w-4" />
                 </button>
               </div>
-              <div className="absolute inset-0 bg-gradient-to-br from-cyan-600/50 to-cyan-700" />
+              <div className="absolute inset-0 bg-linear-to-br from-cyan-600/50 to-cyan-700" />
             </motion.div>
 
             {/* Baptisan */}
@@ -364,12 +379,15 @@ export default function Home() {
                   Mengambil langkah berikutnya dalam perjalanan iman Anda
                   melalui baptisan air.
                 </p>
-                <button className="flex items-center gap-2 text-sm font-semibold text-white transition-all hover:gap-3">
+                <button
+                  type="button"
+                  className="flex items-center gap-2 text-sm font-semibold text-white transition-all hover:gap-3"
+                >
                   Selengkapnya
                   <ArrowRight className="h-4 w-4" />
                 </button>
               </div>
-              <div className="absolute inset-0 bg-gradient-to-br from-orange-600/50 to-orange-700" />
+              <div className="absolute inset-0 bg-linear-to-br from-orange-600/50 to-orange-700" />
             </motion.div>
 
             {/* Pastoral */}
@@ -391,12 +409,15 @@ export default function Home() {
                   Menginspirasi iman Anda dan menciptakan suasana doa serta
                   penggembalaan rohani.
                 </p>
-                <button className="flex items-center gap-2 text-sm font-semibold text-white transition-all hover:gap-3">
+                <button
+                  type="button"
+                  className="flex items-center gap-2 text-sm font-semibold text-white transition-all hover:gap-3"
+                >
                   Selengkapnya
                   <ArrowRight className="h-4 w-4" />
                 </button>
               </div>
-              <div className="absolute inset-0 bg-gradient-to-br from-green-700/50 to-green-800" />
+              <div className="absolute inset-0 bg-linear-to-br from-green-700/50 to-green-800" />
             </motion.div>
           </div>
         </div>
@@ -488,7 +509,10 @@ export default function Home() {
                   <p className="mb-6 leading-relaxed text-gray-700">
                     {event.description}
                   </p>
-                  <button className="group/btn flex items-center gap-2 font-semibold transition-all hover:gap-3">
+                  <button
+                    type="button"
+                    className="group/btn flex items-center gap-2 font-semibold transition-all hover:gap-3"
+                  >
                     Selengkapnya
                     <ArrowRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
                   </button>

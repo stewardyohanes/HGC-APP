@@ -13,7 +13,7 @@ export default function NotFound() {
   }, []);
   return (
     <section className="relative isolate overflow-hidden">
-      <div className="mx-auto flex min-h-[70vh] max-w-7xl flex-col items-center justify-center gap-8 px-6 text-center">
+      <div className="mx-auto flex min-h-screen max-w-7xl flex-col items-center justify-center gap-8 px-6 text-center">
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
@@ -73,7 +73,7 @@ export default function NotFound() {
 
       {/* subtle radial glow */}
       <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute left-1/2 top-1/2 h-[60rem] w-[60rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.07),transparent_60%)]" />
+        <div className="absolute left-1/2 top-1/2 h-240 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.07),transparent_60%)]" />
       </div>
     </section>
   );

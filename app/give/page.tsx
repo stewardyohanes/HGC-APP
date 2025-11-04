@@ -25,7 +25,8 @@ export default function GivePage() {
           </h1>
           <p className="mt-2 text-gray-400">
             Kami menabur dengan sukacita sebagai wujud penyembahan kepada Yesus.
-            "Allah mengasihi orang yang memberi dengan sukacita" (2Kor 9:7).
+            &quot;Allah mengasihi orang yang memberi dengan sukacita&quot; (2Kor
+            9:7).
           </p>
         </div>
 
