@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import {
   Clock,
   MapPin,
@@ -101,28 +102,44 @@ export default function WorshipPage() {
 
   return (
     <div className="min-h-screen bg-black text-white">
-      {/* Hero Section */}
-      <section className="relative py-24 md:py-32">
-        <div className="mx-auto max-w-7xl px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center"
-          >
-            <h1 className="mb-4 text-4xl font-bold tracking-tight text-white md:text-5xl">
-              Jadwal Ibadah
-            </h1>
-            <p className="mx-auto max-w-2xl text-lg text-gray-300 md:text-xl">
-              Bergabunglah bersama kami dalam berbagai ibadah di berbagai
-              lokasi. Mari kita memuji dan menyembah Tuhan bersama-sama.
-            </p>
-          </motion.div>
+      {/* Hero Section with Background Image */}
+      <div className="relative w-full overflow-hidden">
+        <div className="relative h-[400px] md:h-[500px] w-full max-w-7xl mx-auto">
+          <Image
+            src="/worship/bg-ibadah.jpg"
+            alt="Jadwal Ibadah - Worship Schedule"
+            fill
+            priority
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 2000px"
+          />
+          {/* Dark Overlay */}
+          <div className="absolute inset-0 bg-black/60" />
+
+          {/* Content */}
+          <div className="relative z-10 h-full flex items-center justify-center">
+            <div className="mx-auto w-full max-w-7xl px-4 md:px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                className="text-center"
+              >
+                <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight text-white">
+                  Jadwal Ibadah
+                </h1>
+                <p className="mt-3 text-gray-200 md:text-lg max-w-2xl mx-auto">
+                  Bergabunglah bersama kami dalam berbagai ibadah di berbagai
+                  lokasi. Mari kita memuji dan menyembah Tuhan bersama-sama.
+                </p>
+              </motion.div>
+            </div>
+          </div>
         </div>
-      </section>
+      </div>
 
       {/* Schedule Section */}
-      <section className="pb-24 md:pb-32">
+      <section className="pt-12 pb-24 md:pt-16 md:pb-32">
         <div className="mx-auto max-w-7xl px-6">
           {/* Parent Card */}
           <motion.div
