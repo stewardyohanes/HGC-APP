@@ -35,8 +35,8 @@ const smallGroups: SmallGroup[] = [
     language: "Indonesia",
   },
   {
-    key: "talita",
-    name: "Talita",
+    key: "talitakum",
+    name: "Talita Kum",
     type: "hybrid",
     frequency: "weekly",
     location: "Manado",
