@@ -340,14 +340,6 @@ export default function SiteChrome({ children }: Props) {
                 </li>
                 <li>
                   <Link
-                    href="/event"
-                    className="transition-colors hover:text-white"
-                  >
-                    Event
-                  </Link>
-                </li>
-                <li>
-                  <Link
                     href="/give"
                     className="transition-colors hover:text-white"
                   >

@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import HeroClient from "./_components/HeroClient";
 import MinistriesClient from "./_components/MinistriesClient";
-import EventsClient from "./_components/EventsClient";
+import WorshipScheduleClient from "./_components/WorshipScheduleClient";
 import LatestSermonsServer from "./_components/LatestSermonsServer";
 
 //
@@ -72,8 +72,8 @@ export default function Home() {
       {/* Latest Sermon Section (Server fetch + client render) */}
       <LatestSermonsServer />
 
-      {/* Upcoming Events Section (Client) */}
-      <EventsClient />
+      {/* Worship Schedule Section (Client) */}
+      <WorshipScheduleClient />
 
       {/* Join Ministry Call-to-Action Section */}
       <section className="relative py-24 md:py-32">

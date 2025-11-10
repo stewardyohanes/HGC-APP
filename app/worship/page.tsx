@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import {
   Clock,
@@ -83,15 +83,59 @@ const worshipCategories: WorshipCategory[] = [
     name: "Doa & Puasa",
     locations: [],
   },
+  {
+    name: "Ibadah Pemuda",
+    locations: [
+      {
+        city: "Graha HGC Manado",
+        specificLocation: "Ruko Marina Plaza Blok D12",
+        mapUrl: "https://maps.app.goo.gl/XnUCAyXVgPn9WmaR9",
+        mapEmbedUrl:
+          "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.467962674602!2d124.83478607581614!3d1.490725661105084!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3287759043810d43%3A0xaaaaf2b6bbb8b2f4!2sGraha%20HGC%20Manado%20-%20JKI%20HIS%20GRACE%20CHURCH!5e0!3m2!1sen!2sid!4v1762756990448!5m2!1sen!2sid",
+        sessions: [{ session: "ENGAGE", time: "14.00", timezone: "WITA" }],
+      },
+    ],
+  },
+  {
+    name: "Ibadah Anak",
+    locations: [
+      {
+        city: "Graha HGC Manado",
+        specificLocation: "Ruko Marina Plaza Blok D12",
+        mapUrl: "https://maps.app.goo.gl/XnUCAyXVgPn9WmaR9",
+        mapEmbedUrl:
+          "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.467962674602!2d124.83478607581614!3d1.490725661105084!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3287759043810d43%3A0xaaaaf2b6bbb8b2f4!2sGraha%20HGC%20Manado%20-%20JKI%20HIS%20GRACE%20CHURCH!5e0!3m2!1sen!2sid!4v1762756990448!5m2!1sen!2sid",
+        sessions: [
+          { session: "Sesi 1", time: "08.00", timezone: "WITA" },
+          { session: "Sesi 2", time: "11.00", timezone: "WITA" },
+        ],
+      },
+    ],
+  },
 ];
 
 export default function WorshipPage() {
-  const [expandedCategories, setExpandedCategories] = useState<
-    Record<string, boolean>
-  >({
-    "Ibadah Minggu Raya": true,
-    "Doa & Puasa": true,
-  });
+  // Initialize state based on hash if available
+  const getInitialState = () => {
+    if (typeof window === "undefined") {
+      return {
+        "Ibadah Minggu Raya": true,
+        "Doa & Puasa": true,
+        "Ibadah Pemuda": true,
+        "Ibadah Anak": true,
+      };
+    }
+    const hash = window.location.hash.slice(1);
+    return {
+      "Ibadah Minggu Raya": true,
+      "Doa & Puasa": true,
+      "Ibadah Pemuda": hash === "pemuda" ? true : true,
+      "Ibadah Anak": hash === "anak" ? true : true,
+    };
+  };
+
+  const [expandedCategories, setExpandedCategories] =
+    useState<Record<string, boolean>>(getInitialState);
 
   const toggleCategory = (categoryName: string) => {
     setExpandedCategories((prev) => ({
@@ -99,6 +143,19 @@ export default function WorshipPage() {
       [categoryName]: !prev[categoryName],
     }));
   };
+
+  // Scroll to element when accessed via anchor link
+  useEffect(() => {
+    const hash = window.location.hash.slice(1);
+    if (hash === "pemuda" || hash === "anak") {
+      setTimeout(() => {
+        const element = document.getElementById(hash);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }, 300);
+    }
+  }, []);
 
   return (
     <div className="min-h-screen bg-black text-white">
@@ -152,6 +209,13 @@ export default function WorshipPage() {
               {worshipCategories.map((category, categoryIndex) => (
                 <motion.div
                   key={category.name}
+                  id={
+                    category.name === "Ibadah Pemuda"
+                      ? "pemuda"
+                      : category.name === "Ibadah Anak"
+                      ? "anak"
+                      : undefined
+                  }
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{
