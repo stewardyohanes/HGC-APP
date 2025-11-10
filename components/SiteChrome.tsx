@@ -295,7 +295,7 @@ export default function SiteChrome({ children }: Props) {
               <div className="space-y-2 text-sm text-gray-400">
                 <p className="flex items-center gap-2">
                   <MapPin className="h-4 w-4" />
-                  Graha HGC Marina (Ruko Marina Plaza Blok D8-9) Manado 95111
+                  Graha HGC Marina (Ruko Marina Plaza Blok D12) Manado 95111
                 </p>
                 <p className="flex items-center gap-2">
                   <Clock className="h-4 w-4" />
