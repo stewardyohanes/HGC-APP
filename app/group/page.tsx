@@ -19,6 +19,7 @@ type SmallGroup = {
   time: string;
   category: string;
   language: string;
+  phone: string;
 };
 
 const smallGroups: SmallGroup[] = [
@@ -33,6 +34,7 @@ const smallGroups: SmallGroup[] = [
     time: "18:00",
     category: "Dewasa",
     language: "Indonesia",
+    phone: "6282292000957",
   },
   {
     key: "talitakum",
@@ -45,6 +47,7 @@ const smallGroups: SmallGroup[] = [
     time: "18:00",
     category: "Dewasa",
     language: "Indonesia",
+    phone: "6281340556460",
   },
   {
     key: "damai",
@@ -57,6 +60,7 @@ const smallGroups: SmallGroup[] = [
     time: "18:00",
     category: "Dewasa",
     language: "Indonesia",
+    phone: "6282360127795",
   },
   {
     key: "metanoia",
@@ -69,6 +73,7 @@ const smallGroups: SmallGroup[] = [
     time: "18:00",
     category: "Dewasa",
     language: "Indonesia",
+    phone: "6281242960037",
   },
   {
     key: "kasih",
@@ -81,6 +86,7 @@ const smallGroups: SmallGroup[] = [
     time: "18:00",
     category: "Dewasa",
     language: "Indonesia",
+    phone: "6285229459636",
   },
   {
     key: "sangkakala",
@@ -93,6 +99,7 @@ const smallGroups: SmallGroup[] = [
     time: "18:00",
     category: "Dewasa",
     language: "Indonesia",
+    phone: "6281253339243",
   },
   {
     key: "imanuel",
@@ -105,6 +112,7 @@ const smallGroups: SmallGroup[] = [
     time: "18:00",
     category: "Dewasa",
     language: "Indonesia",
+    phone: "6285298786889",
   },
   {
     key: "pniel",
@@ -117,6 +125,7 @@ const smallGroups: SmallGroup[] = [
     time: "18:00",
     category: "Dewasa",
     language: "Indonesia",
+    phone: "6285240033421",
   },
   {
     key: "betlehem",
@@ -129,6 +138,7 @@ const smallGroups: SmallGroup[] = [
     time: "18:00",
     category: "Dewasa",
     language: "Indonesia",
+    phone: "62895326818540",
   },
   {
     key: "miracle",
@@ -141,6 +151,7 @@ const smallGroups: SmallGroup[] = [
     time: "18:00",
     category: "Dewasa",
     language: "Indonesia",
+    phone: "6282111890586",
   },
   {
     key: "hope",
@@ -153,6 +164,7 @@ const smallGroups: SmallGroup[] = [
     time: "18:00",
     category: "Dewasa",
     language: "Indonesia",
+    phone: "6285256200087",
   },
   {
     key: "kasih-tomohon",
@@ -165,6 +177,7 @@ const smallGroups: SmallGroup[] = [
     time: "18:00",
     category: "Dewasa",
     language: "Indonesia",
+    phone: "6285241464947",
   },
 ];
 
@@ -422,7 +435,9 @@ export default function GroupPage() {
               {/* Action Button */}
               <div className="mt-auto pt-4 w-full">
                 <a
-                  href={`https://wa.me/6281295960003?text=Shalom%2C%20saya%20ingin%20bergabung%20dalam%20kelompok%20${encodeURIComponent(
+                  href={`https://wa.me/${
+                    group.phone
+                  }?text=Shalom%2C%20saya%20ingin%20bergabung%20dalam%20kelompok%20${encodeURIComponent(
                     group.name
                   )}`}
                   target="_blank"
