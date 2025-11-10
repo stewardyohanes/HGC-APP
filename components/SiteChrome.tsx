@@ -121,7 +121,6 @@ export default function SiteChrome({ children }: Props) {
               { label: "Melayani", href: "/serve", prefetch: true },
               { label: "Komunitas", href: "/group", prefetch: true },
               { label: "Ibadah", href: "/worship", prefetch: false },
-              { label: "Event", href: "/event", prefetch: false },
               { label: "About", href: "/about", prefetch: false },
             ].map((item, index) => (
               <motion.div
