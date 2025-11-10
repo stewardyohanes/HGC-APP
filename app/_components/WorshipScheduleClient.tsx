@@ -70,7 +70,7 @@ export default function WorshipScheduleClient() {
                       <div className="flex items-center gap-2">
                         <Clock className="h-4 w-4 text-gray-600" />
                         <span className="text-sm font-semibold text-gray-700">
-                          {session.label || (schedule.sessions.length > 1 ? `Sesi ${sessionIndex + 1}` : "Ibadah")}
+                          {('label' in session ? session.label : null) || (schedule.sessions.length > 1 ? `Sesi ${sessionIndex + 1}` : "Ibadah")}
                         </span>
                       </div>
                       <div className="text-right">
