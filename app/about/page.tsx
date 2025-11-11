@@ -20,67 +20,67 @@ import { motion } from "framer-motion";
 const rebornValues = [
   {
     letter: "R",
-    word: "Reverence",
-    meaning: "Penghormatan",
-    description: "Menghormati Tuhan dengan segenap hati, jiwa, dan akal budi dalam setiap aspek kehidupan.",
+    word: "Righteousness",
+    meaning: "Kebenaran",
+    description: "Hidup dalam kebenaran sesuai dengan Firman Tuhan dan standar-Nya yang kudus.",
   },
   {
     letter: "E",
-    word: "Excellence",
-    meaning: "Kesempurnaan",
-    description: "Melakukan segala sesuatu dengan sebaik-baiknya untuk kemuliaan Tuhan.",
+    word: "Enthusiasm",
+    meaning: "Antusias",
+    description: "Melayani Tuhan dan sesama dengan semangat, gairah, dan sukacita yang meluap.",
   },
   {
     letter: "B",
-    word: "Brotherhood",
-    meaning: "Persaudaraan",
-    description: "Membangun hubungan yang erat dan saling mengasihi sebagai keluarga Allah.",
+    word: "Be Humble",
+    meaning: "Kerendahan Hati",
+    description: "Memiliki hati yang rendah hati, mengakui ketergantungan pada Tuhan dan menghormati sesama.",
   },
   {
     letter: "O",
-    word: "Obedience",
+    word: "Obey",
     meaning: "Ketaatan",
-    description: "Taat kepada Firman Tuhan dan pimpinan Roh Kudus dalam setiap keputusan.",
+    description: "Taat kepada Firman Tuhan dan pimpinan Roh Kudus dalam setiap aspek kehidupan.",
   },
   {
     letter: "R",
-    word: "Resilience",
-    meaning: "Ketahanan",
-    description: "Tetap kuat dan tidak menyerah dalam menghadapi tantangan iman.",
+    word: "Respect",
+    meaning: "Menghargai",
+    description: "Menghormati dan menghargai Tuhan, sesama, dan setiap pribadi yang diciptakan-Nya.",
   },
   {
     letter: "N",
-    word: "Nurture",
-    meaning: "Pemeliharaan",
-    description: "Memelihara dan mengembangkan iman melalui disiplin rohani yang konsisten.",
+    word: "Nations",
+    meaning: "Misi Bangsa Bangsa",
+    description: "Terlibat aktif dalam misi global untuk menjangkau semua bangsa dengan kabar baik.",
   },
 ];
 
 const historyTimeline = [
   {
-    year: "2010",
-    title: "Awal Pelayanan",
-    description: "Dimulainya pelayanan JKI His Grace Church di Manado dengan visi menjadi keluarga kerajaan Allah.",
+    year: "21 Oktober 2017",
+    title: "Pendirian Gereja",
+    description: "JKI His Grace Church didirikan oleh Pdt. Daniel Julian Laoh (+) yang saat itu ditahbiskan oleh ketua Sinode JKI, Pdt. Dr. Adi Sutanto. Gereja ini ada untuk menjadi berkat bagi Sulawesi Utara dengan semangat pembaharuan untuk bergerak maju menggenapi visi yang Tuhan sudah berikan.",
   },
   {
-    year: "2015",
-    title: "Ekspansi Lokasi",
-    description: "Pembukaan lokasi baru di Tomohon dan Bitung untuk menjangkau lebih banyak jiwa.",
+    year: "Juni 2020",
+    title: "Perpindahan Kepemimpinan & Ekspansi",
+    description: "Tuhan memanggil pulang gembala sidang Pdt. Daniel Julian Laoh dan digantikan oleh Pdt. Lucky Laoh. Penyertaan Tuhan terus dinyatakan dalam gereja ini. Cabang Bitung memiliki Gedung gereja permanen dan diselesaikan pembangunannya hanya dalam waktu 6 bulan pada saat pandemi covid. Cabang Tomohon juga dihibahkan tanah oleh seorang jemaat dan sedang dalam tahap Pembangunan sampai saat ini.",
   },
   {
-    year: "2018",
-    title: "Graha HGC Manado",
-    description: "Peresmian Graha HGC Manado sebagai pusat pelayanan utama di Ruko Marina Plaza.",
+    year: "Maret 2024",
+    title: "Ekspansi Cabang Sonder",
+    description: "Karena anugerah Tuhan, gereja menyelesaikan pembelian tanah dan bangunan gereja cabang Sonder.",
   },
   {
-    year: "2020",
-    title: "Digital Ministry",
-    description: "Pengembangan pelayanan digital untuk menjangkau jemaat di masa pandemi.",
+    year: "September 2024",
+    title: "Pusat Manado",
+    description: "Pusat Manado dipercayakan juga tanah pada September 2024.",
   },
   {
-    year: "2023",
-    title: "Ekspansi Jakarta",
-    description: "Pembukaan lokasi baru di Jakarta untuk menjangkau jemaat di ibukota.",
+    year: "Januari 2025",
+    title: "Pembangunan Pusat Manado",
+    description: "Pembangunan pusat Manado sudah dimulai pada Januari 2025 hingga saat ini.",
   },
 ];
 
@@ -218,7 +218,7 @@ export default function AboutPage() {
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {rebornValues.map((value, index) => (
               <motion.div
-                key={value.letter}
+                key={value.word}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -332,7 +332,7 @@ export default function AboutPage() {
           <div className="grid gap-8 md:grid-cols-3">
             {leadershipTeam.map((leader, index) => (
               <motion.div
-                key={leader.name}
+                key={leader.position}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
