@@ -1,8 +1,8 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
+import { motion } from "framer-motion";
 import {
+  ArrowRight,
   Calendar,
   Clock,
   Mail,
@@ -10,49 +10,52 @@ import {
   Phone,
   Target,
   Users,
-  Heart,
-  BookOpen,
-  HandHeart,
-  ArrowRight,
 } from "lucide-react";
-import { motion } from "framer-motion";
+import Image from "next/image";
+import Link from "next/link";
 
 const rebornValues = [
   {
     letter: "R",
     word: "Righteousness",
     meaning: "Kebenaran",
-    description: "Hidup dalam kebenaran sesuai dengan Firman Tuhan dan standar-Nya yang kudus.",
+    description:
+      "Hidup dalam kebenaran sesuai dengan Firman Tuhan dan standar-Nya yang kudus.",
   },
   {
     letter: "E",
     word: "Enthusiasm",
     meaning: "Antusias",
-    description: "Melayani Tuhan dan sesama dengan semangat, gairah, dan sukacita yang meluap.",
+    description:
+      "Melayani Tuhan dan sesama dengan semangat, gairah, dan sukacita yang meluap.",
   },
   {
     letter: "B",
     word: "Be Humble",
     meaning: "Kerendahan Hati",
-    description: "Memiliki hati yang rendah hati, mengakui ketergantungan pada Tuhan dan menghormati sesama.",
+    description:
+      "Memiliki hati yang rendah hati, mengakui ketergantungan pada Tuhan dan menghormati sesama.",
   },
   {
     letter: "O",
     word: "Obey",
     meaning: "Ketaatan",
-    description: "Taat kepada Firman Tuhan dan pimpinan Roh Kudus dalam setiap aspek kehidupan.",
+    description:
+      "Taat kepada Firman Tuhan dan pimpinan Roh Kudus dalam setiap aspek kehidupan.",
   },
   {
     letter: "R",
     word: "Respect",
     meaning: "Menghargai",
-    description: "Menghormati dan menghargai Tuhan, sesama, dan setiap pribadi yang diciptakan-Nya.",
+    description:
+      "Menghormati dan menghargai Tuhan, sesama, dan setiap pribadi yang diciptakan-Nya.",
   },
   {
     letter: "N",
     word: "Nations",
     meaning: "Misi Bangsa Bangsa",
-    description: "Terlibat aktif dalam misi global untuk menjangkau semua bangsa dengan kabar baik.",
+    description:
+      "Terlibat aktif dalam misi global untuk menjangkau semua bangsa dengan kabar baik.",
   },
 ];
 
@@ -60,17 +63,20 @@ const historyTimeline = [
   {
     year: "21 Oktober 2017",
     title: "Pendirian Gereja",
-    description: "JKI His Grace Church didirikan oleh Pdt. Daniel Julian Laoh (+) yang saat itu ditahbiskan oleh ketua Sinode JKI, Pdt. Dr. Adi Sutanto. Gereja ini ada untuk menjadi berkat bagi Sulawesi Utara dengan semangat pembaharuan untuk bergerak maju menggenapi visi yang Tuhan sudah berikan.",
+    description:
+      "JKI His Grace Church didirikan oleh Pdt. Daniel Julian Laoh (+) yang saat itu ditahbiskan oleh ketua Sinode JKI, Pdt. Dr. Adi Sutanto. Gereja ini ada untuk menjadi berkat bagi Sulawesi Utara dengan semangat pembaharuan untuk bergerak maju menggenapi visi yang Tuhan sudah berikan.",
   },
   {
     year: "Juni 2020",
     title: "Perpindahan Kepemimpinan & Ekspansi",
-    description: "Tuhan memanggil pulang gembala sidang Pdt. Daniel Julian Laoh dan digantikan oleh Pdt. Lucky Laoh. Penyertaan Tuhan terus dinyatakan dalam gereja ini. Cabang Bitung memiliki Gedung gereja permanen dan diselesaikan pembangunannya hanya dalam waktu 6 bulan pada saat pandemi covid. Cabang Tomohon juga dihibahkan tanah oleh seorang jemaat dan sedang dalam tahap Pembangunan sampai saat ini.",
+    description:
+      "Tuhan memanggil pulang gembala sidang Pdt. Daniel Julian Laoh dan digantikan oleh Pdt. Lucky Laoh. Penyertaan Tuhan terus dinyatakan dalam gereja ini. Cabang Bitung memiliki Gedung gereja permanen dan diselesaikan pembangunannya hanya dalam waktu 6 bulan pada saat pandemi covid. Cabang Tomohon juga dihibahkan tanah oleh seorang jemaat dan sedang dalam tahap Pembangunan sampai saat ini.",
   },
   {
     year: "Maret 2024",
     title: "Ekspansi Cabang Sonder",
-    description: "Karena anugerah Tuhan, gereja menyelesaikan pembelian tanah dan bangunan gereja cabang Sonder.",
+    description:
+      "Karena anugerah Tuhan, gereja menyelesaikan pembelian tanah dan bangunan gereja cabang Sonder.",
   },
   {
     year: "September 2024",
@@ -80,28 +86,56 @@ const historyTimeline = [
   {
     year: "Januari 2025",
     title: "Pembangunan Pusat Manado",
-    description: "Pembangunan pusat Manado sudah dimulai pada Januari 2025 hingga saat ini.",
+    description:
+      "Pembangunan pusat Manado sudah dimulai pada Januari 2025 hingga saat ini.",
   },
 ];
 
 const leadershipTeam = [
   {
-    name: "Pdt. [Nama]",
-    position: "Senior Pastor",
-    description: "Memimpin gereja dengan visi yang jelas dan hati yang mengasihi jemaat.",
-    image: "/logo-main.webp", // TODO: Ganti dengan foto leadership
+    name: "Ps. Lucky Laoh S.Th, M.Pd",
+    // position: "Senior Pastor",
+    image: "/about/lucky-laoh.JPG", // TODO: Ganti dengan foto leadership
   },
   {
-    name: "Pdt. [Nama]",
-    position: "Associate Pastor",
-    description: "Membantu dalam pelayanan dan pembinaan jemaat.",
-    image: "/logo-main.webp", // TODO: Ganti dengan foto leadership
+    name: "Ps. Merol Mokalu",
+    // position: "Associate Pastor",
+    image: "/about/merol-mokalu.JPG", // TODO: Ganti dengan foto leadership
   },
   {
-    name: "Pnt. [Nama]",
-    position: "Elder",
-    description: "Melayani sebagai penatua yang membimbing dan mengawasi pelayanan.",
-    image: "/logo-main.webp", // TODO: Ganti dengan foto leadership
+    name: "Ps. Timothy Pangau S.Th",
+    // position: "Elder",
+    image: "/about/timothy-pangau.JPG", // TODO: Ganti dengan foto leadership
+  },
+  {
+    name: "Ps. Lucky Rumimpunu",
+    // position: "Elder",
+    image: "/about/lucky-rumimpunus.JPG", // TODO: Ganti dengan foto leadership
+  },
+  {
+    name: "Ps. Jerry Arifin S.Th",
+    // position: "Elder",
+    image: "/about/jerry-arifin.JPG", // TODO: Ganti dengan foto leadership
+  },
+  {
+    name: "Ps. Kevin Rompis",
+    // position: "Elder",
+    image: "/about/kevin-rompis.JPG", // TODO: Ganti dengan foto leadership
+  },
+  {
+    name: "Ps. Marcel Eman S.Th",
+    // position: "Elder",
+    image: "/about/marcel-eman.JPG", // TODO: Ganti dengan foto leadership
+  },
+  {
+    name: "Ps. Robert Torindatu S.Th",
+    // position: "Elder",
+    image: "/about/robert-torindatu.JPG", // TODO: Ganti dengan foto leadership
+  },
+  {
+    name: "Ps. Jackson Ali S.Th",
+    // position: "Elder",
+    image: "/about/jackson-ali.JPG", // TODO: Ganti dengan foto leadership
   },
 ];
 
@@ -290,7 +324,9 @@ export default function AboutPage() {
                   {/* Content Card */}
                   <div
                     className={`flex-1 rounded-xl border border-white/10 bg-zinc-950 p-6 md:w-5/12 ${
-                      index % 2 === 0 ? "md:mr-auto md:text-right" : "md:ml-auto"
+                      index % 2 === 0
+                        ? "md:mr-auto md:text-right"
+                        : "md:ml-auto"
                     }`}
                   >
                     <div className="mb-2 text-2xl font-bold text-emerald-400">
@@ -332,7 +368,7 @@ export default function AboutPage() {
           <div className="grid gap-8 md:grid-cols-3">
             {leadershipTeam.map((leader, index) => (
               <motion.div
-                key={leader.position}
+                key={leader.name}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -343,18 +379,14 @@ export default function AboutPage() {
                   <Image
                     src={leader.image}
                     alt={leader.name}
-                    width={300}
-                    height={300}
+                    width={1920}
+                    height={1080}
                     className="aspect-square w-full object-cover transition-transform group-hover:scale-105"
                   />
                 </div>
                 <h3 className="mb-2 text-xl font-bold text-white">
                   {leader.name}
                 </h3>
-                <p className="mb-3 text-sm font-semibold text-emerald-400">
-                  {leader.position}
-                </p>
-                <p className="text-sm text-gray-400">{leader.description}</p>
               </motion.div>
             ))}
           </div>
@@ -428,7 +460,9 @@ export default function AboutPage() {
                   <div className="flex items-center gap-4">
                     <Clock className="h-5 w-5 shrink-0 text-emerald-400" />
                     <div>
-                      <p className="font-semibold text-white">Jam Operasional</p>
+                      <p className="font-semibold text-white">
+                        Jam Operasional
+                      </p>
                       <p className="text-sm text-gray-400">Open Every Day</p>
                     </div>
                   </div>
@@ -506,4 +540,3 @@ export default function AboutPage() {
     </div>
   );
 }
-
