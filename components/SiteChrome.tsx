@@ -243,7 +243,11 @@ export default function SiteChrome({ children }: Props) {
                 { label: "Melayani", href: "/serve", prefetch: true },
                 { label: "Komunitas", href: "/group", prefetch: true },
                 { label: "Ibadah", href: "/worship", prefetch: false },
-                { label: "Event", href: "/event", prefetch: false },
+                {
+                  label: "Jadwal Manado",
+                  href: "/worship/manado",
+                  prefetch: false,
+                },
                 { label: "About", href: "/about", prefetch: false },
               ].map(({ label, href, prefetch }) => (
                 <Link
@@ -331,7 +335,7 @@ export default function SiteChrome({ children }: Props) {
                 </li>
                 <li>
                   <Link
-                    href="/serve"
+                    href="/worship"
                     className="transition-colors hover:text-white"
                   >
                     Ibadah
@@ -339,10 +343,18 @@ export default function SiteChrome({ children }: Props) {
                 </li>
                 <li>
                   <Link
+                    href="/worship/manado"
+                    className="transition-colors hover:text-white"
+                  >
+                    Jadwal Manado
+                  </Link>
+                </li>
+                <li>
+                  <Link
                     href="/give"
                     className="transition-colors hover:text-white"
                   >
-                    Give
+                    Memberi
                   </Link>
                 </li>
               </ul>

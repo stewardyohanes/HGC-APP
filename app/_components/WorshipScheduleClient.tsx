@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Clock, MapPin, Calendar, ArrowRight } from "lucide-react";
+import { Clock, Calendar, ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 export default function WorshipScheduleClient() {
@@ -9,6 +9,7 @@ export default function WorshipScheduleClient() {
     {
       location: "Graha HGC Manado",
       address: "Ruko Marina Plaza Blok D12",
+      href: "/worship/manado",
       sessions: [
         { time: "08.00", timezone: "WITA" },
         { time: "11.00", timezone: "WITA" },
@@ -17,11 +18,13 @@ export default function WorshipScheduleClient() {
     {
       location: "Ibadah Pemuda",
       address: "Graha HGC Manado - Ruko Marina Plaza Blok D12",
+      href: "/worship#pemuda",
       sessions: [{ time: "14.00", timezone: "WITA", label: "ENGAGE" }],
     },
     {
       location: "Ibadah Anak",
       address: "Graha HGC Manado - Ruko Marina Plaza Blok D12",
+      href: "/worship#anak",
       sessions: [
         { time: "08.00", timezone: "WITA" },
         { time: "11.00", timezone: "WITA" },
@@ -41,6 +44,16 @@ export default function WorshipScheduleClient() {
           <h2 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Jadwal Ibadah</h2>
           <p className="mx-auto max-w-3xl text-lg text-gray-600">
             Bergabunglah bersama kami dalam ibadah setiap hari Minggu di berbagai lokasi. Mari kita memuji dan menyembah Tuhan bersama-sama.
+          </p>
+          <p className="mt-3 text-sm text-gray-600">
+            Untuk jemaat di area kota, cek{" "}
+            <Link
+              href="/worship/manado"
+              className="font-semibold text-black underline underline-offset-2"
+            >
+              Jadwal Ibadah Manado
+            </Link>{" "}
+            agar lebih cepat.
           </p>
         </motion.div>
 
@@ -81,7 +94,7 @@ export default function WorshipScheduleClient() {
                   ))}
                 </div>
                 <Link
-                  href="/worship"
+                  href={schedule.href}
                   className="group/btn flex items-center gap-2 font-semibold transition-all hover:gap-3"
                 >
                   Lihat Detail
@@ -111,4 +124,3 @@ export default function WorshipScheduleClient() {
     </section>
   );
 }
-

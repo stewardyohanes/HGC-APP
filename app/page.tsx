@@ -101,11 +101,15 @@ export default function Home() {
             <div className="flex items-center justify-center gap-4">
               <Link
                 href="/serve"
-                target="_blank"
-                rel="noopener noreferrer"
                 className="inline-flex items-center justify-center rounded-md bg-white px-6 py-3 font-semibold text-black transition-colors hover:bg-gray-200"
               >
                 Gabung Pelayanan
+              </Link>
+              <Link
+                href="/worship/manado"
+                className="inline-flex items-center justify-center rounded-md border border-white/30 bg-black/30 px-6 py-3 font-semibold text-white transition-colors hover:bg-black/50"
+              >
+                Jadwal Ibadah Manado
               </Link>
             </div>
           </div>

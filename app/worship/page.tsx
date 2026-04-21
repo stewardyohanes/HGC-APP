@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import {
   Clock,
   MapPin,
@@ -189,6 +190,14 @@ export default function WorshipPage() {
                   Bergabunglah bersama kami dalam berbagai ibadah di berbagai
                   lokasi. Mari kita memuji dan menyembah Tuhan bersama-sama.
                 </p>
+                <div className="mt-6">
+                  <Link
+                    href="/worship/manado"
+                    className="inline-flex items-center rounded-md border border-white/20 bg-black/40 px-4 py-2 text-sm font-semibold text-white hover:bg-black/60"
+                  >
+                    Lihat Halaman Khusus Jadwal Ibadah Manado
+                  </Link>
+                </div>
               </motion.div>
             </div>
           </div>

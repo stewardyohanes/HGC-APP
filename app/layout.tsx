@@ -3,6 +3,7 @@ import "./globals.css";
 import SiteChrome from "../components/SiteChrome";
 import { Montserrat, Dancing_Script } from "next/font/google";
 import { WebVitals } from "./_components/WebVitals";
+import AnalyticsClient from "./_components/AnalyticsClient";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -17,6 +18,9 @@ const dancingScript = Dancing_Script({
   display: "swap",
   variable: "--font-dancing",
 });
+
+const googleSiteVerification = process.env.GOOGLE_SITE_VERIFICATION;
+const gaMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.hgcchurch.id"),
@@ -57,6 +61,13 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  ...(googleSiteVerification
+    ? {
+        verification: {
+          google: googleSiteVerification,
+        },
+      }
+    : {}),
 };
 
 export const viewport: Viewport = {
@@ -85,7 +96,7 @@ export default function RootLayout({
               logo: "https://www.hgcchurch.id/logo-main.webp",
               address: {
                 "@type": "PostalAddress",
-                streetAddress: "Graha HGC Marina (Ruko Marina Plaza Blok D8-9)",
+                streetAddress: "Graha HGC Marina (Ruko Marina Plaza Blok D12)",
                 addressLocality: "Manado",
                 postalCode: "95111",
                 addressCountry: "ID",
@@ -108,6 +119,7 @@ export default function RootLayout({
         className={`font-sans antialiased ${montserrat.variable} ${dancingScript.variable}`}
       >
         <SiteChrome>
+          <AnalyticsClient measurementId={gaMeasurementId} />
           <WebVitals />
           {children}
         </SiteChrome>

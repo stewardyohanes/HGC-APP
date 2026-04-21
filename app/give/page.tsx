@@ -88,7 +88,15 @@ export default function GivePage() {
         </div>
 
         <p className="mt-6 text-center text-sm text-gray-500">
-          Jika perlu bukti transfer, kirim ke WhatsApp gereja: 0812-9596-0003
+          Jika perlu bukti transfer, kirim ke WhatsApp gereja:{" "}
+          <a
+            href="https://wa.me/6281295960003?text=Shalom%2C%20ini%20bukti%20transfer%20persembahan%20saya"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-semibold text-emerald-300 hover:text-emerald-200"
+          >
+            0812-9596-0003
+          </a>
         </p>
       </div>
     </div>
