@@ -22,162 +22,148 @@ type SmallGroup = {
   phone: string;
 };
 
+const DEFAULTS = {
+  type: "hybrid" as GroupType,
+  frequency: "weekly" as Frequency,
+  day: "Jumat - Minggu",
+  time: "18:00",
+  category: "Dewasa",
+  language: "Indonesia",
+};
+
+const REGION_ORDER = [
+  "Manado",
+  "Minahasa Utara",
+  "Sonder",
+  "Bitung",
+  "Tomohon",
+] as const;
+
 const smallGroups: SmallGroup[] = [
+  // Manado
   {
-    key: "logos",
-    name: "Logos",
-    type: "hybrid",
-    frequency: "weekly",
+    key: "sg-tuminting",
+    name: "SG Tuminting",
     location: "Manado",
-    leader: "Pnt Pieter Panelewen",
-    day: "Jumat - Minggu",
-    time: "18:00",
-    category: "Dewasa",
-    language: "Indonesia",
-    phone: "6282292000957",
-  },
-  {
-    key: "talitakum",
-    name: "Talita Kum",
-    type: "hybrid",
-    frequency: "weekly",
-    location: "Manado",
-    leader: "Ibu Rini Saruan & Bpk Rolly Sendow",
-    day: "Jumat - Minggu",
-    time: "18:00",
-    category: "Dewasa",
-    language: "Indonesia",
-    phone: "6281340556460",
-  },
-  {
-    key: "damai",
-    name: "Damai",
-    type: "hybrid",
-    frequency: "weekly",
-    location: "Manado",
-    leader: "Pnt Jeffry Sahambangun & Ibu Sisilia Lalenoh",
-    day: "Jumat - Minggu",
-    time: "18:00",
-    category: "Dewasa",
-    language: "Indonesia",
+    leader: "Jeffry Sahambangun",
     phone: "6282360127795",
+    ...DEFAULTS,
   },
   {
-    key: "metanoia",
-    name: "Metanoia",
-    type: "hybrid",
-    frequency: "weekly",
+    key: "sg-malalayang",
+    name: "SG Malalayang",
     location: "Manado",
-    leader: "Pnt Hari Arifin",
-    day: "Jumat - Minggu",
-    time: "18:00",
-    category: "Dewasa",
-    language: "Indonesia",
+    leader: "Rolly Sendow, Rini Saruan",
+    phone: "6281340556460",
+    ...DEFAULTS,
+  },
+  {
+    key: "sg-tikala",
+    name: "SG Tikala",
+    location: "Manado",
+    leader: "Pieter Palenewen",
+    phone: "6282292000957",
+    ...DEFAULTS,
+  },
+  {
+    key: "sg-mapanget",
+    name: "SG Mapanget",
+    location: "Manado",
+    leader: "Hari Arifin",
     phone: "6281242960037",
+    ...DEFAULTS,
   },
+  // Minahasa Utara
   {
-    key: "kasih",
-    name: "Kasih",
-    type: "hybrid",
-    frequency: "weekly",
-    location: "Manado",
-    leader: "Bpk Jansen Galwan",
-    day: "Jumat - Minggu",
-    time: "18:00",
-    category: "Dewasa",
-    language: "Indonesia",
+    key: "sg-kalawat",
+    name: "SG Kalawat",
+    location: "Minahasa Utara",
+    leader: "Yansenius Galwan",
     phone: "6285229459636",
+    ...DEFAULTS,
   },
+  // Sonder
   {
-    key: "sangkakala",
-    name: "Sangkakala",
-    type: "hybrid",
-    frequency: "weekly",
-    location: "Bitung",
-    leader: "Pnt Wempi Mawirampakel",
-    day: "Jumat - Minggu",
-    time: "18:00",
-    category: "Dewasa",
-    language: "Indonesia",
-    phone: "6281253339243",
-  },
-  {
-    key: "imanuel",
-    name: "Imanuel",
-    type: "hybrid",
-    frequency: "weekly",
-    location: "Bitung",
-    leader: "Pnt Hok Kundiman",
-    day: "Jumat - Minggu",
-    time: "18:00",
-    category: "Dewasa",
-    language: "Indonesia",
-    phone: "6285298786889",
-  },
-  {
-    key: "pniel",
-    name: "Pniel",
-    type: "hybrid",
-    frequency: "weekly",
+    key: "sonder-atas",
+    name: "Sonder Atas",
     location: "Sonder",
-    leader: "Pnt Hartje Anis",
-    day: "Jumat - Minggu",
-    time: "18:00",
-    category: "Dewasa",
-    language: "Indonesia",
+    leader: "Hartje Anis",
     phone: "6285240033421",
+    ...DEFAULTS,
   },
   {
-    key: "betlehem",
-    name: "Betlehem",
-    type: "hybrid",
-    frequency: "weekly",
+    key: "sonder-bawah",
+    name: "Sonder Bawah",
     location: "Sonder",
-    leader: "Pnt Jeiny Karu",
-    day: "Jumat - Minggu",
-    time: "18:00",
-    category: "Dewasa",
-    language: "Indonesia",
+    leader: "Jeiny Karu",
     phone: "62895326818540",
+    ...DEFAULTS,
+  },
+  // Bitung
+  {
+    key: "sg-ranowulu",
+    name: "SG Ranowulu",
+    location: "Bitung",
+    leader: "Hok Kundiman",
+    phone: "6285298786889",
+    ...DEFAULTS,
   },
   {
-    key: "miracle",
-    name: "Miracle",
-    type: "hybrid",
-    frequency: "weekly",
+    key: "sg-maesa",
+    name: "SG Maesa",
+    location: "Bitung",
+    leader: "Wempy Mawirampakel",
+    phone: "6281253339243",
+    ...DEFAULTS,
+  },
+  // Tomohon
+  {
+    key: "sg-tomohon-tengah",
+    name: "SG Tomohon Tengah",
     location: "Tomohon",
-    leader: "Ibu Finy Hansang",
-    day: "Jumat - Minggu",
-    time: "18:00",
-    category: "Dewasa",
-    language: "Indonesia",
-    phone: "6282111890586",
+    leader: "Theo Turangan",
+    phone: "",
+    ...DEFAULTS,
   },
   {
-    key: "hope",
-    name: "Hope",
-    type: "hybrid",
-    frequency: "weekly",
+    key: "sg-tomohon-selatan-1",
+    name: "SG Tomohon Selatan (1)",
     location: "Tomohon",
-    leader: "Pnt Andrew Hansang",
-    day: "Jumat - Minggu",
-    time: "18:00",
-    category: "Dewasa",
-    language: "Indonesia",
+    leader: "Andrew Hansang",
     phone: "6285256200087",
+    ...DEFAULTS,
   },
   {
-    key: "kasih-tomohon",
-    name: "Kasih",
-    type: "hybrid",
-    frequency: "weekly",
+    key: "sg-tomohon-selatan-2",
+    name: "SG Tomohon Selatan (2)",
     location: "Tomohon",
-    leader: "Pnt Lodi Laluan",
-    day: "Jumat - Minggu",
-    time: "18:00",
-    category: "Dewasa",
-    language: "Indonesia",
+    leader: "Stenly Wuisan",
+    phone: "",
+    ...DEFAULTS,
+  },
+  {
+    key: "sg-tomohon-selatan-3",
+    name: "SG Tomohon Selatan (3)",
+    location: "Tomohon",
+    leader: "Meifini Hansang",
+    phone: "6282111890586",
+    ...DEFAULTS,
+  },
+  {
+    key: "sg-tomohon-selatan-4",
+    name: "SG Tomohon Selatan (4)",
+    location: "Tomohon",
+    leader: "Marlina Lempoi",
+    phone: "",
+    ...DEFAULTS,
+  },
+  {
+    key: "sg-tomohon-timur",
+    name: "SG Tomohon Timur",
+    location: "Tomohon",
+    leader: "Lody Laluan",
     phone: "6285241464947",
+    ...DEFAULTS,
   },
 ];
 
@@ -213,7 +199,10 @@ export default function GroupPage() {
   );
 
   const locations = useMemo(
-    () => Array.from(new Set(smallGroups.map((g) => g.location))).sort(),
+    () =>
+      REGION_ORDER.filter((r) =>
+        smallGroups.some((g) => g.location === r)
+      ) as string[],
     []
   );
 
@@ -237,6 +226,13 @@ export default function GroupPage() {
       return matchesSearch && matchesType && matchesCategory && matchesLocation;
     });
   }, [searchQuery, selectedType, selectedCategory, selectedLocation]);
+
+  const groupsByRegion = useMemo(() => {
+    return REGION_ORDER.map((region) => ({
+      region,
+      groups: filteredGroups.filter((g) => g.location === region),
+    })).filter((section) => section.groups.length > 0);
+  }, [filteredGroups]);
 
   return (
     <div className="min-h-screen bg-zinc-900 text-white">
@@ -360,98 +356,125 @@ export default function GroupPage() {
           </div>
         </div>
 
-        {/* Groups Grid */}
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 pb-20">
-          {filteredGroups.map((group, index) => (
-            <motion.div
-              key={group.key}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: index * 0.05 }}
-              className="w-full rounded-2xl border border-zinc-700 bg-zinc-800 shadow-lg flex flex-col self-stretch h-full gap-4 items-start p-6 pb-6 hover:border-zinc-600 transition-colors"
-            >
-              {/* Header */}
-              <div className="flex items-start justify-between w-full">
-                <div className="flex-1">
-                  <div className="flex items-center gap-2 mb-2">
-                    <span className="text-xs font-semibold uppercase text-emerald-400">
-                      {getFrequencyLabel(group.frequency)}
-                    </span>
-                    <span className="text-xs text-gray-400">•</span>
-                    <span className="text-xs font-medium text-gray-300">
-                      {getTypeLabel(group.type)}
-                    </span>
-                  </div>
-                  {(group.type === "offline" || group.type === "hybrid") && (
-                    <div className="flex items-center gap-1 text-xs text-gray-400 mb-1">
-                      <MapPin className="h-3 w-3" />
-                      <span className="font-medium">{group.location}</span>
+        {/* Groups grouped by Region */}
+        <div className="pb-20 space-y-10">
+          {groupsByRegion.map((section) => (
+            <section key={section.region}>
+              <div className="mb-4 flex items-baseline gap-3">
+                <h2 className="text-2xl md:text-3xl font-bold text-white">
+                  {section.region}
+                </h2>
+                <span className="text-sm text-gray-400">
+                  {section.groups.length} kelompok
+                </span>
+              </div>
+              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {section.groups.map((group, index) => (
+                  <motion.div
+                    key={group.key}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: index * 0.05 }}
+                    className="w-full rounded-2xl border border-zinc-700 bg-zinc-800 shadow-lg flex flex-col self-stretch h-full gap-4 items-start p-6 pb-6 hover:border-zinc-600 transition-colors"
+                  >
+                    {/* Header */}
+                    <div className="flex items-start justify-between w-full">
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2 mb-2">
+                          <span className="text-xs font-semibold uppercase text-emerald-400">
+                            {getFrequencyLabel(group.frequency)}
+                          </span>
+                          <span className="text-xs text-gray-400">•</span>
+                          <span className="text-xs font-medium text-gray-300">
+                            {getTypeLabel(group.type)}
+                          </span>
+                        </div>
+                        {(group.type === "offline" ||
+                          group.type === "hybrid") && (
+                          <div className="flex items-center gap-1 text-xs text-gray-400 mb-1">
+                            <MapPin className="h-3 w-3" />
+                            <span className="font-medium">
+                              {group.location}
+                            </span>
+                          </div>
+                        )}
+                      </div>
                     </div>
-                  )}
-                </div>
+
+                    {/* Group Name */}
+                    <h3 className="text-xl font-bold text-white">
+                      {group.name}
+                    </h3>
+
+                    {/* Category and Type */}
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="text-xs font-semibold uppercase text-gray-300">
+                        {group.category}
+                      </span>
+                      <span className="text-xs text-gray-500">•</span>
+                      <span className="text-xs text-gray-400">
+                        {group.language}
+                      </span>
+                    </div>
+
+                    {/* Leader */}
+                    <div className="flex items-center gap-2 text-sm">
+                      <Users className="h-4 w-4 text-gray-400" />
+                      <span className="text-gray-300">
+                        <span className="text-gray-500">Leader:</span>{" "}
+                        <span className="font-semibold text-white">
+                          {group.leader}
+                        </span>
+                      </span>
+                    </div>
+
+                    {/* Schedule */}
+                    <div className="flex items-center gap-2 text-sm">
+                      <Calendar className="h-4 w-4 text-gray-400" />
+                      <span className="text-gray-300">
+                        <span className="font-medium">{group.day}</span>
+                      </span>
+                      <Clock className="h-4 w-4 text-gray-400 ml-2" />
+                      <span className="text-gray-300">{group.time}</span>
+                    </div>
+
+                    {/* Address for in-person groups */}
+                    {group.type === "offline" && group.location && (
+                      <div className="flex items-start gap-2 text-sm text-gray-400">
+                        <MapPin className="h-4 w-4 mt-0.5 shrink-0" />
+                        <span>{group.location}</span>
+                      </div>
+                    )}
+
+                    {/* Action Button */}
+                    <div className="mt-auto pt-4 w-full">
+                      {group.phone ? (
+                        <a
+                          href={`https://wa.me/${
+                            group.phone
+                          }?text=Shalom%2C%20saya%20ingin%20bergabung%20dalam%20kelompok%20${encodeURIComponent(
+                            group.name
+                          )}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="block w-full rounded-lg border border-emerald-600/40 bg-emerald-600/20 px-4 py-2 text-center text-sm font-semibold text-emerald-200 transition-colors hover:bg-emerald-600/30"
+                        >
+                          Hubungi via WhatsApp
+                        </a>
+                      ) : (
+                        <div className="block w-full rounded-lg border border-zinc-700 bg-zinc-800/60 px-4 py-2 text-center text-sm font-medium text-gray-500">
+                          Kontak akan segera tersedia
+                        </div>
+                      )}
+                    </div>
+                  </motion.div>
+                ))}
               </div>
-
-              {/* Group Name */}
-              <h3 className="text-xl font-bold text-white">{group.name}</h3>
-
-              {/* Category and Type */}
-              <div className="flex flex-wrap items-center gap-2">
-                <span className="text-xs font-semibold uppercase text-gray-300">
-                  {group.category}
-                </span>
-                <span className="text-xs text-gray-500">•</span>
-                <span className="text-xs text-gray-400">{group.language}</span>
-              </div>
-
-              {/* Leader */}
-              <div className="flex items-center gap-2 text-sm">
-                <Users className="h-4 w-4 text-gray-400" />
-                <span className="text-gray-300">
-                  <span className="text-gray-500">Leader:</span>{" "}
-                  <span className="font-semibold text-white">
-                    {group.leader}
-                  </span>
-                </span>
-              </div>
-
-              {/* Schedule */}
-              <div className="flex items-center gap-2 text-sm">
-                <Calendar className="h-4 w-4 text-gray-400" />
-                <span className="text-gray-300">
-                  <span className="font-medium">{group.day}</span>
-                </span>
-                <Clock className="h-4 w-4 text-gray-400 ml-2" />
-                <span className="text-gray-300">{group.time}</span>
-              </div>
-
-              {/* Address for in-person groups */}
-              {group.type === "offline" && group.location && (
-                <div className="flex items-start gap-2 text-sm text-gray-400">
-                  <MapPin className="h-4 w-4 mt-0.5 shrink-0" />
-                  <span>{group.location}</span>
-                </div>
-              )}
-
-              {/* Action Button */}
-              <div className="mt-auto pt-4 w-full">
-                <a
-                  href={`https://wa.me/${
-                    group.phone
-                  }?text=Shalom%2C%20saya%20ingin%20bergabung%20dalam%20kelompok%20${encodeURIComponent(
-                    group.name
-                  )}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block w-full rounded-lg border border-emerald-600/40 bg-emerald-600/20 px-4 py-2 text-center text-sm font-semibold text-emerald-200 transition-colors hover:bg-emerald-600/30"
-                >
-                  Hubungi via WhatsApp
-                </a>
-              </div>
-            </motion.div>
+            </section>
           ))}
         </div>
 
-        {filteredGroups.length === 0 && (
+        {groupsByRegion.length === 0 && (
           <div className="py-20 text-center">
             <p className="text-gray-400 text-lg">
               Tidak ada kelompok yang ditemukan
