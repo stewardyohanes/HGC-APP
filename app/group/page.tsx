@@ -84,16 +84,16 @@ const smallGroups: SmallGroup[] = [
   },
   // Sonder
   {
-    key: "sonder-atas",
-    name: "Sonder Atas",
+    key: "sg-sonder-atas",
+    name: "SG Sonder Atas",
     location: "Sonder",
     leader: "Hartje Anis",
     phone: "6285240033421",
     ...DEFAULTS,
   },
   {
-    key: "sonder-bawah",
-    name: "Sonder Bawah",
+    key: "sg-sonder-bawah",
+    name: "SG Sonder Bawah",
     location: "Sonder",
     leader: "Jeiny Karu",
     phone: "62895326818540",
@@ -195,15 +195,15 @@ export default function GroupPage() {
 
   const categories = useMemo(
     () => Array.from(new Set(smallGroups.map((g) => g.category))),
-    []
+    [],
   );
 
   const locations = useMemo(
     () =>
       REGION_ORDER.filter((r) =>
-        smallGroups.some((g) => g.location === r)
+        smallGroups.some((g) => g.location === r),
       ) as string[],
-    []
+    [],
   );
 
   const filteredGroups = useMemo(() => {
@@ -453,7 +453,7 @@ export default function GroupPage() {
                           href={`https://wa.me/${
                             group.phone
                           }?text=Shalom%2C%20saya%20ingin%20bergabung%20dalam%20kelompok%20${encodeURIComponent(
-                            group.name
+                            group.name,
                           )}`}
                           target="_blank"
                           rel="noopener noreferrer"
